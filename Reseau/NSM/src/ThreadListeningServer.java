@@ -29,12 +29,20 @@ public class ThreadListeningServer extends Thread
     		}
     	}
 		catch (Exception e) {
-        	System.err.println("Error in ThreadListeningServer::run :" + e);
-			ihmServer.affiche("");
-			ihmServer.affiche("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			ihmServer.affiche("~~~~~~~~~~ ERREUR ~~~~~~~~~~");
-			ihmServer.affiche("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-			ihmServer.affiche("");
+			ihmServer.affiche("##### Deconnexion from:" + socket.getInetAddress());
+			try
+			{
+				socket.close();
+				server.remove(socket);
+			}
+			catch (Exception e1) {
+				System.err.println("Error in ThreadListeningServer::run:" + e1);
+				ihmServer.affiche("");
+				ihmServer.affiche("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+				ihmServer.affiche("~~~~~~~~~~ ERREUR ~~~~~~~~~~");
+				ihmServer.affiche("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+				ihmServer.affiche("");
+		    }
     	}
 	}
 }

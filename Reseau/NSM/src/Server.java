@@ -7,6 +7,8 @@ public class Server
 	final public static String DECONNEXION = "deco";
 	final public static String IP = "134.214.106.30";
 	final public static int PORT = 5001;
+//	final public static String IP = "134.214.106.31";
+//	final public static int PORT = 5001;
 	final private String FICHIER_HISTORIQUE = "src\\historique.txt";
 	
 	private ArrayList<Socket> sockets;
@@ -104,5 +106,9 @@ public class Server
 
 	public String getHistorique() {
 		return historique;
+	}
+
+	public void remove(Socket socket) {
+		sockets.remove(socket);
 	}
 }
