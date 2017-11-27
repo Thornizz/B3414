@@ -1,0 +1,6 @@
+***** Jacques est connecté *****
+Jacques : Bonjour
+Jacques : Au revoir
+***** Jacques est déconnecté *****
+***** Franck est connecté *****
+***** Jacques est connecté *****
