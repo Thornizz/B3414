@@ -1,0 +1,9 @@
+ vb,
+vg j
+***** lo est connecté *****
+lo : bv
+lo : j
+lo : t nul
+lo : <3
+<3<3<3
+***** lo est déconnecté *****
