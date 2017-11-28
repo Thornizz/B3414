@@ -1,6 +1,5 @@
 function [Fw]=tfour(vf)
 
-
 %tf	Transformée de Fourier discrète.
 % 	tf(vf) est la transformée de Fourier discrète de la fonction f
 %       dont (ne) échantillons sont rangés dans le vecteur ligne vf. 
