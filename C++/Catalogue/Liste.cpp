@@ -22,16 +22,13 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-void Liste::Affiche()
+void Liste::Affiche(const char * texte)
 {
-#ifdef MAP
-	cout<<"Liste : "<<endl;
-#endif
 	ElementListe *cur=first;
 	unsigned int i=1;
 	while(cur!=NULL)
 	{
-		cout<<"     "<<i<<") ";
+		cout<<texte<<i<<") ";
 		cur->trajet->Affiche();
 		cout<<endl;
 		cur = cur->suivant;

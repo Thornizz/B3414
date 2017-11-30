@@ -10,12 +10,21 @@ void testTrajetSimple();
 void testListe();
 void testTrajetCompose();
 void testCatalogue();
+void application();
 
 int main (){
-	testTrajetSimple();
-	testListe();
-	testTrajetCompose();
-	testCatalogue();
+
+/////////////////////////////////////////////////
+//
+//	la saisie n'est pas propre, il faut pointer une nouvelle zone texte à chaque fois !
+//
+/////////////////////////////////////////////////
+
+//	testTrajetSimple();
+//	testListe();
+//	testTrajetCompose();
+//	testCatalogue();
+	application();
 	cout<<endl<<"PENSER A FAIRE : valgrind --leak-check=yes ./demo"<<endl;
 	return 0;
 }
@@ -112,11 +121,11 @@ void testListe(){
 	cout<<endl<<"*****"<<endl<<endl;
 
 	Liste l1;
-	l1.Affiche();
+	l1.Affiche("");
 	l1.Add(pt1);
-	l1.Affiche();
+	l1.Affiche("");
 	l1.Add(pt2);
-	l1.Affiche();
+	l1.Affiche("");
 	
 	cout<<endl<<"***** Fin test Liste"<<endl<<endl;
 }
@@ -166,4 +175,107 @@ void testTrajetSimple(){
 	cout<<"t1.IsBefore(t2) return "<<t1.IsBefore(t2)<<endl;
 	
 	cout<<endl<<"***** Fin test TrajetSimple"<<endl<<endl;
+}
+
+void application(){
+	
+	const unsigned int NB_MAX_CHAR = 100;
+
+	cout<<endl;
+	cout<<"******************************"<<endl;
+	cout<<"* Ouverture de l'application *"<<endl;
+	cout<<"******************************"<<endl<<endl;
+	
+	Catalogue catalogue;
+	unsigned int saisieMenu;
+	do
+	{	
+		cout<<"Menu :"<<endl;
+		cout<<"0) quitter l'application"<<endl;
+		cout<<"1) créer un trajet simple"<<endl;
+		cout<<"2) créer un trajet composé"<<endl;
+		cout<<"3) ajouter un trajet simple à un trajet composé"<<endl;
+		cout<<"4) afficher le catalogue"<<endl;
+		cout<<"5) recherche de parcours"<<endl;
+		cout<<"6) recherche avancée de parcours"<<endl;
+		cout<<endl;
+		cout <<"Saisissez votre choix : ";
+		cin>>saisieMenu;
+		cout<<endl;
+		switch(saisieMenu)
+		{
+			case 1:
+			{
+				cout<<"-- Créer un trajet simple --"<<endl;
+				cout <<"Saisissez la ville de départ : ";
+				char depart[NB_MAX_CHAR];
+				cin >> depart;
+				cout <<"Saisissez la ville d'arrivée : ";
+				char arrivee[NB_MAX_CHAR];
+				cin >> arrivee;
+				cout <<"Saisissez le moyen de transport : ";
+				char moyenTransport[NB_MAX_CHAR];
+				cin >> moyenTransport;
+				
+				Trajet * t = new TrajetSimple(depart,arrivee,moyenTransport);
+				catalogue.Add(t);
+				
+				break;
+			}
+			
+			case 2:
+			{
+				cout<<"-- Créer un trajet composé --"<<endl;
+				cout <<"Saisissez la ville de départ : ";
+				char depart[NB_MAX_CHAR];
+				cin >> depart;
+				cout <<"Saisissez le moyen de transport : ";
+				char moyenTransport1[NB_MAX_CHAR];
+				cin >> moyenTransport1;
+				cout <<"Saisissez la ville etape : ";
+				char etape[NB_MAX_CHAR];
+				cin >> etape;
+				cout <<"Saisissez le moyen de transport : ";
+				char moyenTransport2[NB_MAX_CHAR];
+				cin >> moyenTransport2;
+				cout <<"Saisissez la ville d'arrivée : ";
+				char arrivee[NB_MAX_CHAR];
+				cin >> arrivee;
+				
+				Trajet * t1 = new TrajetSimple(depart,etape,moyenTransport1);
+				Trajet * t2 = new TrajetSimple(etape,arrivee,moyenTransport2);
+				Trajet * tc = new TrajetCompose(t1,t2);
+				catalogue.Add(tc);
+				
+				break;
+			}
+			
+			case 4:
+				catalogue.Affiche();
+				break;
+			
+			case 5:
+			{
+				cout<<"-- Recherche de parcours --"<<endl;
+				cout <<"Saisissez la ville de départ : ";
+				char depart[NB_MAX_CHAR];
+				cin >> depart;
+				cout <<"Saisissez la ville d'arrivée : ";
+				char arrivee[NB_MAX_CHAR];
+				cin >> arrivee;
+				
+				catalogue.RechercheParcours(depart,arrivee);
+				
+				break;
+			}
+		}
+	cout<<endl<<"----------------------------------------------------------"<<endl;
+	cout<<endl;
+	}
+	while(saisieMenu != 0);
+
+	
+	cout<<"******************************"<<endl;
+	cout<<"* Fermeture de l'application *"<<endl;
+	cout<<"******************************"<<endl<<endl;
 }

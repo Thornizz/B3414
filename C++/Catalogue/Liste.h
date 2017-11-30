@@ -31,7 +31,7 @@ public:
     // Contrat : aucun
     //
 
-	void Affiche();
+	void Affiche(const char * texte);
     // Mode d'emploi : aucun
     //
     // Contrat : aucun

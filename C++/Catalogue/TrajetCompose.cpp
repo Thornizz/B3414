@@ -31,7 +31,7 @@ using namespace std;
 
 	Trajet::Affiche();
 	cout << endl;
-	liste->Affiche();
+	liste->Affiche("            ");
 	 
 } //----- Fin de Affiche
 

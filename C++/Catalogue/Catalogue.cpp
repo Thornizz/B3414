@@ -30,8 +30,7 @@ void Catalogue::Affiche () const
 		cout << "Erreur : TrajetCompose vide"<<endl;
 		return;
 	}
-	cout << endl;
-	liste->Affiche();
+	liste->Affiche("    ");
 	cout<<"}"<<endl;
 } //----- Fin de Affiche
 
