@@ -26,7 +26,7 @@ class ElementListe
 public:
 //-------------------------------------------- Constructeurs - destructeur
 	ElementListe (Trajet* t);
-    // Mode d'emploi : d le départ du trajet, a l'arrivée du trajet et mT le moyen de transport du trajet
+    // Mode d'emploi : aucun
     //
     // Contrat : aucun
     //

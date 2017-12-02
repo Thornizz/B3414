@@ -178,7 +178,7 @@ void testTrajetSimple(){
 }
 
 void application(){
-	
+	//permet de gérer un menu
 	const unsigned int NB_MAX_CHAR = 100;
 
 	cout<<endl;

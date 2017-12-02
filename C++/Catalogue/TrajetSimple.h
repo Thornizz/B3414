@@ -15,7 +15,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <TrajetSimple>
-// Cette classe permet d'implémenter les trajets simples et est la classe mère de la classe ElementTrajetSimple
+// Cette classe permet d'implémenter les trajets simples
 //
 //------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ class TrajetSimple : public Trajet
 public:
 //----------------------------------------------------- Méthodes publiques
     virtual void Affiche () const;
-    // Mode d'emploi : aucun
+    // Mode d'emploi : affiche les caractéristiques du trajet
     //
     // Contrat : aucun
     //
@@ -51,13 +51,13 @@ public:
     //
 
 	const char* GetDepart() const;
-    // Mode d'emploi : aucun
+    // Mode d'emploi : renvoie le départ du trajet
     //
     // Contrat : aucun
     //
     
 	const char* GetArrivee() const;
-    // Mode d'emploi : aucun
+    // Mode d'emploi : renvoie l'arrivée du trajet
     //
     // Contrat : aucun
     //
