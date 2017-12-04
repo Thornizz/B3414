@@ -14,6 +14,17 @@ void application();
 
 int main (){
 
+
+
+/////////////////////////////////////////////////
+//
+//	enlever les include inutiles
+//	verifier que les methodes marche avec catalogue vide
+//  mettre les char en majuscule dans les caractéristiques des trajets
+//  vérifier si un trajet existe déjà quand on le crée
+//
+/////////////////////////////////////////////////
+
 /////////////////////////////////////////////////
 //
 //	la saisie n'est pas propre, il faut pointer une nouvelle zone texte à chaque fois !

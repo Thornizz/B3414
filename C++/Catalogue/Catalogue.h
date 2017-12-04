@@ -1,4 +1,4 @@
-//ElementTrajetSimple à remplacer par ElementTrajet
+
 /*************************************************************************
                                   Catalogue
                              -------------------
