@@ -15,7 +15,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Liste>
-// Cette classe permet d'implémenter une liste chainée d'ElementsListe
+// Cette classe permet d'implémenter une liste chaine d'ElementsListe
 //
 //------------------------------------------------------------------------
 
@@ -26,19 +26,19 @@ class Liste
 public:
 //----------------------------------------------------- Méthodes publiques
 	void Add(Trajet* t);
-    // Mode d'emploi : ajoute un trajet à la liste
+    // Mode d'emploi : aucun
     //
     // Contrat : aucun
     //
 
 	void Affiche(const char * texte);
-    // Mode d'emploi : affiche l'ensemble des trajets de la liste
+    // Mode d'emploi : aucun
     //
     // Contrat : aucun
     //
 //-------------------------------------------- Constructeurs - destructeur
 	Liste ();
-    // Mode d'emploi : aucun
+    // Mode d'emploi : d le départ du ElementListe, a l'arrivée du ElementListe et mT le moyen de transport du ElementListe
     //
     // Contrat : aucun
     //

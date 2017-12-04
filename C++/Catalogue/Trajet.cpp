@@ -28,7 +28,7 @@ void Trajet::Affiche () const
 	cout<<GetDepart()<<" -> "<<GetArrivee();
 } //----- Fin de Affiche
 
-bool Trajet::IsBefore (Trajet& t) const
+bool Trajet::IsBefore (Trajet & t) const
 // Algorithme : aucun
 //
 {

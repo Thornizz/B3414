@@ -59,6 +59,7 @@ void Liste::Add(Trajet* t)
 Liste::Liste ()
 // Algorithme :
 //
+//:first(NULL)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Liste>" << endl;

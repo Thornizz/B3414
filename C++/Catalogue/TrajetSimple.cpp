@@ -61,6 +61,11 @@ TrajetSimple::~TrajetSimple ( )
 // Algorithme :
 //
 {
+	
+	free((char*) depart);
+	free((char*) arrivee);
+	free((char*) moyenTransport);
+	
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif

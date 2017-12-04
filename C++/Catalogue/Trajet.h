@@ -12,7 +12,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Trajet>
-// Cette classe est construite comme la classe mère des classes TrajetSimple, TrajetCompose.
+// Cette classe est construite comme la classe mère des classes TrajetSimple, TrajetCompose et ElementTrajet.
 //
 //------------------------------------------------------------------------
 
@@ -35,13 +35,13 @@ public:
     //
 
 	virtual const char* GetDepart() const = 0;
-    // Mode d'emploi : renvoie le départ du trajet
+    // Mode d'emploi : aucun
     //
     // Contrat : aucun
     //
     
 	virtual const char* GetArrivee() const = 0;
-    // Mode d'emploi : renvoie l'arrivée du trajet
+    // Mode d'emploi : aucun
     //
     // Contrat : aucun
     //

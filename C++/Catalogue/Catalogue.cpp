@@ -92,18 +92,30 @@ unsigned int Catalogue::RechercheParcours(const char* depart,const char* arrivee
 	return cpt;
 } //----- Fin de RechercheParcours
 
-unsigned int Catalogue::RechercheParcoursAvancee(const char* depart,const char* arrivee)
+void Catalogue::RechercheParcoursAvancee(const char* depart,const char* arrivee)
 // Algorithme : aucun
 //
 {
-	unsigned int cpt = 0;
+	// initialisation
+	unsigned int nbTrajet = 0;
+	ElementListe* cur = liste->first;
+	while(cur != NULL)
+	{
+		++nbTrajet;
+		cur=cur->suivant;
+	}
+	unsigned int * tab =  (unsigned int *) malloc(sizeof(unsigned int)*nbTrajet);
+	for(unsigned int i = 0 ; i < nbTrajet ; i++)
+	{
+		tab[i] = 0;
+	}
+	
 	cout<<"resultat :"<<endl;
 	cout<<"{"<<endl;
-
-	//ALGO A FAIRE
-
+	rechercheRecursive(depart,arrivee,tab,nbTrajet,1);
 	cout<<"{"<<endl;
-	return cpt;
+	
+	free(tab);
 } //----- Fin de RechercheParcoursAvancee
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -128,4 +140,74 @@ Catalogue::~Catalogue ( )
 #endif
 	delete liste;
 } //----- Fin de ~Catalogue
+
+
+
+//------------------------------------------------------------------ PRIVE
+//------------------------------------------------------- Methodes privées
+
+void Catalogue::rechercheRecursive(const char* depart,const char* arrivee, unsigned int* tab, unsigned int lengthTab,unsigned int position)
+// Algorithme : aucun
+//
+{		
+	bool compFin=true;
+	if(strlen(arrivee) != strlen(depart))
+		compFin = false ;
+	else
+	{
+		for(unsigned int i=0 ; i<strlen(arrivee) ; i++)
+		{
+			if(depart[i] != arrivee[i])
+				compFin = false;
+		}
+	}
+	if(compFin)
+	{
+	cout<<endl<<"*"<<endl;
+		for(unsigned int p = 1 ; p<position ; p++)
+		{
+			unsigned int numTrajet = 0;
+			ElementListe* cur = liste->first;
+			while(tab[numTrajet]!=p)
+			{
+				cur=cur->suivant;
+				++numTrajet;
+			}
+			cur->trajet->Affiche();
+			cout<<endl;
+		}
+		cout<<endl;
+		return;
+	}
+	
+	unsigned int numTrajet = 0;
+	ElementListe* cur = liste->first;	
+	//parcours des trajets
+	while(cur != NULL)
+	{
+		//test sur le depart et l'arrivee du trajet en cours
+		bool compDepart = true;		
+		const char* departCur = cur->trajet->GetDepart();
+		if(strlen(departCur) != strlen(depart))
+			compDepart = false ;
+		else
+		{
+			for(unsigned int i=0 ; i<strlen(departCur) ; i++)
+			{
+				if(departCur[i] != depart[i])
+					compDepart = false;
+			}
+		}
+		
+		if(compDepart && tab[numTrajet]==0)
+		{	
+			tab[numTrajet]=position;
+			rechercheRecursive(cur->trajet->GetArrivee(), arrivee, tab, lengthTab, position+1);
+			tab[numTrajet]=0;
+		}
+		//on passe au trajet suivant
+		++numTrajet;
+		cur = cur->suivant;
+	}
+} //----- Fin de rechercheRecursive
 

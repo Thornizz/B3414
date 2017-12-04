@@ -1,4 +1,4 @@
-
+//ElementTrajetSimple à remplacer par ElementTrajet
 /*************************************************************************
                                   Catalogue
                              -------------------
@@ -44,7 +44,7 @@ public:
     // Contrat : aucun
     //
     
-	unsigned int RechercheParcoursAvancee(const char* depart, const char* arrivee);
+	void RechercheParcoursAvancee(const char* depart, const char* arrivee);
     // Mode d'emploi : recherche de compositions de trajets qui vont de depart à arrivee et renvoie le nombre de solution
     //
     // Contrat : aucun
@@ -69,6 +69,18 @@ public:
 protected:
 //----------------------------------------------------- Attributs protégés
 	Liste* liste;
+
+
+
+//------------------------------------------------------------------ PRIVE
+
+private:
+//------------------------------------------------------- Methodes privées
+	void rechercheRecursive (const char* depart, const char* arrivee, unsigned int* tab, unsigned int lengthTab,unsigned int position);
+    // Mode d'emploi : sous methode de RechercheParcoursAvancee qui recherche de compositions de trajets qui vont de depart à arrivee et renvoie le nombre de solution
+    //
+    // Contrat : aucun
+    //
 
 };
 
