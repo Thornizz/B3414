@@ -1,0 +1,17 @@
+- Essayer de mettre les pointeurs sur Liste (Catalogue et TrajetCompose) en const et sinon dans les remarques de fins
+- Empecher l'ajout de deux trajet identiques : comment faire?? sinon mettre en amélioration
+
+
+- avant de faire le rendu : faire tout propre sans retour à la ligne, tout commenté et avec uniquement le code de l'application dans le main
+
+
+- legende sur la flêche pour A hérite de B
+- ElementListe n'hérite pas de Liste (erreur dans schema et texte)
+- ajout de const et vérification des méthodes
+- orthographe hériteNT
+- mieux détaillé la structure de donnée Liste (liste chainée) et dessin mémoire
+- mettre des tabulations
+- problème sur la liste insister sur la séparation, structure de donné et donnée (au départ pas de liste)
+- Pour la recherche avancée, insisté sur "parcours en profondeur"
+- le constructeur de trajet composé peut être mis dans problème car au moment de faire l'appli c'était pas pratique
+- methode IsBefore à mettre dans remarque plus que amélioration

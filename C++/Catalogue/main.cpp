@@ -14,9 +14,6 @@ void majuscule(char *chaine);
 
 int main (){
 
-// Pas d'ajout d'un trajet déjà existant, trop chaud
-
-// Recherche avancée à bien faire
 //	testTrajetSimple();
 //	testListe();
 //	testTrajetCompose();
