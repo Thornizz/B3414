@@ -7,7 +7,7 @@
 			   			   florian.mutin@insa-lyon.fr
 *************************************************************************/
 
-//-- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.h) --
+//-- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
