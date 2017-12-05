@@ -51,7 +51,7 @@ bool Trajet::Equals (const Trajet & t) const
 	//comparaison des moyens de transport
 	const char* moyenTransport = t.GetMoyenTransport();
 	const char* moyenTransportThis = this->GetMoyenTransport();
-	if(moyenTransportThis == NULL || moyenTransport == NULL)
+	if(moyenTransportThis == nullptr || moyenTransport == nullptr)
 	{
 		return false;
 	}
@@ -103,7 +103,7 @@ bool Trajet::Equals (const Trajet & t) const
 const char* Trajet::GetMoyenTransport() const
 // Algorithme : aucun
 {
-	return NULL;
+	return nullptr;
 } //----- Fin de GetMoyenTransport
 
 //-------------------------------------------- Constructeurs - destructeur

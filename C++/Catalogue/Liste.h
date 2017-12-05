@@ -27,12 +27,12 @@ public:
 //----------------------------------------------------- Méthodes publiques
 	void Add(const Trajet* t);
     // Mode d'emploi : ajout de t en fin de liste
-    // Contrat : t est non null
+    // Contrat : t est non nul
 
 	void Affiche(const char * texte) const;
     // Mode d'emploi : affiche tout les élements du contexte appelant en
 	//     affichant texte devant
-    // Contrat : texte est non null
+    // Contrat : texte est non nul
 
 //-------------------------------------------- Constructeurs - destructeur
 	Liste ();

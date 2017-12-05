@@ -33,7 +33,7 @@ public:
 	// Mode d'emploi : si le trajet t est une suite du contexte appelant,
 	//     alors il est ajouté au contexte appelant et on retourne true, 
 	//     sinon on ne fait rien et retourne false
-	// Contrat : t est non null
+	// Contrat : t est non nul
 
 	bool IsBefore(const Trajet& t) const;
 	// Mode d'emploi : retourne true si le départ de t correspond à 
@@ -52,7 +52,7 @@ public:
     TrajetCompose (const Trajet* t1, const Trajet* t2);
     // Mode d'emploi : t1 et t2 sont respéctivement l'étape 1 et 2 du
 	//     trajet composé créé
-    // Contrat : t1 et t2 sont non nulls et t2 est une suite de t1
+    // Contrat : t1 et t2 sont non nuls et t2 est une suite de t1
 
     virtual ~TrajetCompose ( );
     // Mode d'emploi :

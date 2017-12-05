@@ -37,12 +37,12 @@ public:
 	unsigned int RechercheParcours(const char* depart,
 											const char* arrivee ) const;
     // Mode d'emploi : recherche de trajets qui vont de depart à arrivee 	 //      et renvoie le nombre de solution
-    // Contrat : depart et arrivee sont non nulls
+    // Contrat : depart et arrivee sont non nuls
     
 	void RechercheParcoursAvancee(const char* depart,
 											const char* arrivee ) const;
     // Mode d'emploi : recherche les compositions de trajets qui vont de 	 //     depart à arrivee et affiche toutes les solutions
-    // Contrat : depart et arrivee sont non nulls
+    // Contrat : depart et arrivee sont non nuls
 
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( );
@@ -72,7 +72,7 @@ private:
 	//     d'utilisation pour les trajets utilisés. Position est alors la 
 	//     position qui va être occupée par le prochain trajet qui 
 	//     satisfait la recherche.
-    // Contrat : depart, arrivee, tab et position sont non nulls et 
+    // Contrat : depart, arrivee, tab et position sont non nuls et 
 	//     lengthTab est la longueur du tableau tab
 
 };

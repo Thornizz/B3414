@@ -45,7 +45,7 @@ public:
     // Contrat : aucun
     
 	virtual const char* GetMoyenTransport() const;
-    // Mode d'emploi : renvoi le moyen de transport s'il existe sinon null
+    // Mode d'emploi : renvoi le moyen de transport s'il existe sinon nul
     // Contrat : aucun
 
 //-------------------------------------------- Constructeurs - destructeur

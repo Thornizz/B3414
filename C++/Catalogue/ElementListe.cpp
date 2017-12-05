@@ -21,7 +21,7 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 ElementListe::ElementListe (const Trajet* t)
 // Algorithme : aucun
-:trajet(t),suivant(NULL)
+:trajet(t),suivant(nullptr)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <ElementListe>" << endl;

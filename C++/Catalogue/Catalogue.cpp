@@ -22,7 +22,7 @@ void Catalogue::Affiche () const
 // Algorithme : aucun
 {
 	cout<<"Catalogue de trajets"<<endl<<"{"<<endl;
-	if(liste == NULL)
+	if(liste == nullptr)
 	{
 		cout << "Erreur : TrajetCompose vide"<<endl;
 		return;
@@ -35,7 +35,7 @@ bool Catalogue::Add (const Trajet* t) const
 // Algorithme : aucun
 {
 	ElementListe* cur = liste->first;
-	while(cur != NULL)
+	while(cur != nullptr)
 	{
 		if(cur->trajet->Equals(*t))
 		{
@@ -57,7 +57,7 @@ unsigned int Catalogue::RechercheParcours(const char* depart,
 	
 	ElementListe* cur = liste->first;	
 	//parcours des trajets
-	while(cur != NULL)
+	while(cur != nullptr)
 	{
 		//test sur le départ du trajet en cours
 		bool ok = true;		
@@ -106,13 +106,12 @@ void Catalogue::RechercheParcoursAvancee(const char* depart,
 	// initialisation
 	unsigned int nbTrajet = 0;
 	ElementListe* cur = liste->first;
-	while(cur != NULL)
+	while(cur != nullptr)
 	{
 		++nbTrajet;
 		cur=cur->suivant;
 	}
-	unsigned int * tab =  (unsigned int *) malloc(
-										sizeof(unsigned int)*nbTrajet);
+	unsigned int * tab = new unsigned int;
 	for(unsigned int i = 0 ; i < nbTrajet ; i++)
 	{
 		tab[i] = 0;
@@ -124,7 +123,7 @@ void Catalogue::RechercheParcoursAvancee(const char* depart,
 	rechercheRecursive(depart,arrivee,tab,nbTrajet,1);
 	cout<<"{"<<endl;
 	
-	free(tab);
+	delete tab;
 } //----- Fin de RechercheParcoursAvancee
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -191,7 +190,7 @@ void Catalogue::rechercheRecursive(const char* depart,
 	unsigned int numTrajet = 0;
 	ElementListe* cur = liste->first;	
 	//parcours des trajets
-	while(cur != NULL)
+	while(cur != nullptr)
 	{
 		//test sur le depart du trajet en cours
 		bool compDepart = true;		

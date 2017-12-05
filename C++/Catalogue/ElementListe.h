@@ -26,7 +26,7 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
 	ElementListe (const Trajet* t);
     // Mode d'emploi : aucun
-    // Contrat : t est non null
+    // Contrat : t est non nul
 
     virtual ~ElementListe ( );
     // Mode d'emploi : aucun

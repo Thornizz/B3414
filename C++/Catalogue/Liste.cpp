@@ -24,7 +24,7 @@ void Liste::Affiche(const char * texte) const
 {
 	ElementListe *cur=first;
 	unsigned int i=1;
-	while(cur!=NULL)
+	while(cur!=nullptr)
 	{
 		cout<<texte<<i<<") ";
 		cur->trajet->Affiche();
@@ -38,13 +38,13 @@ void Liste::Add(const Trajet* t)
 // Algorithme : aucun
 {
 	ElementListe* e = new ElementListe(t);
-	if(first==NULL){
+	if(first==nullptr){
 		first=e;
 		return;
 	}
 	ElementListe* cur = first;
 	ElementListe* next = cur->suivant;
-	while(next!=NULL){
+	while(next!=nullptr){
 		cur = next;
 		next = cur->suivant;
 	}
@@ -54,7 +54,7 @@ void Liste::Add(const Trajet* t)
 //-------------------------------------------- Constructeurs - destructeur
 Liste::Liste ()
 // Algorithme : aucun
-:first(NULL)
+:first(nullptr)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Liste>" << endl;
@@ -70,7 +70,7 @@ Liste::~Liste ( )
 #endif
 	ElementListe *cur=first;
 	ElementListe *next;
-	while(cur!=NULL)
+	while(cur!=nullptr)
 	{
 		next = cur->suivant;
 		delete cur;

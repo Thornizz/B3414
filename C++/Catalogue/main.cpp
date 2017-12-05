@@ -19,7 +19,7 @@ void application();
 void majuscule(char *chaine);
 // Mode d'emploi : change les minuscules en majuscules (hors caractères
 //     spéciaux, accents, cédilles)
-// Contrat : chaine est non null
+// Contrat : chaine est non nul
 
 int main (){
 	application();
@@ -63,16 +63,15 @@ void application()
 			{
 				cout<<"-- ajouter un trajet simple --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* depart = new char[NB_MAX_CHAR];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* arrivee = new char[NB_MAX_CHAR];
 				cin >> arrivee;
 				majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
-				char* moyenTransport = (char*) malloc(
-												sizeof(char)*NB_MAX_CHAR);
+				char* moyenTransport = new char[NB_MAX_CHAR];
 				cin >> moyenTransport;
 				majuscule(moyenTransport);
 				
@@ -94,24 +93,22 @@ void application()
 				//saisie d'au moins un départ et une étape
 				cout<<"-- ajouter un trajet composé --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* depart = new char[NB_MAX_CHAR];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez une ville étape : ";
-				char* etape = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* etape = new char[NB_MAX_CHAR];
 				cin >> etape;
 				majuscule(etape);
 				cout <<"Saisissez le moyen de transport : ";
-				char* moyenTransport = (char*) malloc(
-												sizeof(char)*NB_MAX_CHAR);
+				char* moyenTransport = new char[NB_MAX_CHAR];
 				cin >> moyenTransport;
 				majuscule(moyenTransport);
 				
 				Trajet * td = new TrajetSimple(
 											depart,etape,moyenTransport);
 				
-				char* etapeCopie = (char*) malloc(
-												sizeof(char)*NB_MAX_CHAR);
+				char* etapeCopie = new char[NB_MAX_CHAR];
 				strcpy(etapeCopie,etape);
 				
 				TrajetCompose * tc;
@@ -130,12 +127,11 @@ void application()
 				{
 					//saisie de l'étape
 					cout <<"Saisissez une ville étape : ";
-					etape = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+					etape = new char[NB_MAX_CHAR];
 					cin >> etape;
 					majuscule(etape);
 					cout <<"Saisissez le moyen de transport : ";
-					moyenTransport = (char*) malloc(
-												sizeof(char)*NB_MAX_CHAR);
+					moyenTransport = new char[NB_MAX_CHAR];
 					cin >> moyenTransport;
 					majuscule(moyenTransport);
 					
@@ -153,7 +149,7 @@ void application()
 						tc->Add(t);
 					}
 					
-					etapeCopie = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+					etapeCopie = new char[NB_MAX_CHAR];
 					strcpy(etapeCopie,etape);
 					
 					cout << "--" <<endl;
@@ -166,11 +162,11 @@ void application()
 				
 				//saisie de l'arrivée
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* arrivee = new char[NB_MAX_CHAR];
 				cin >> arrivee;
 				majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
-				moyenTransport = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				moyenTransport = new char[NB_MAX_CHAR];
 				cin >> moyenTransport;
 				majuscule(moyenTransport);
 				
@@ -206,18 +202,18 @@ void application()
 			{
 				cout<<"-- recherche de parcours --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* depart = new char[NB_MAX_CHAR];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* arrivee = new char[NB_MAX_CHAR];
 				cin >> arrivee;
 				majuscule(arrivee);
 				
 				catalogue.RechercheParcours(depart,arrivee);
 				
-				free(depart);
-				free(arrivee);
+				delete[] depart;
+				delete[] arrivee;
 				
 				break;
 			}
@@ -227,18 +223,18 @@ void application()
 			{
 				cout<<"-- recherche avancée de parcours --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* depart = new char[NB_MAX_CHAR];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = (char*) malloc(sizeof(char)*NB_MAX_CHAR);
+				char* arrivee = new char[NB_MAX_CHAR];
 				cin >> arrivee;
 				majuscule(arrivee);
 				
 				catalogue.RechercheParcoursAvancee(depart,arrivee);
 				
-				free(depart);
-				free(arrivee);
+				delete[] depart;
+				delete[] arrivee;
 				
 				break;
 			}

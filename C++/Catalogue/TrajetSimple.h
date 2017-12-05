@@ -49,7 +49,7 @@ public:
 	TrajetSimple (const char* d, const char* a, const char* mT);
     // Mode d'emploi : d le départ du trajet, a l'arrivée du trajet et mT 
 	//     le moyen de transport du trajet
-    // Contrat : d, a et mT sont non nulls
+    // Contrat : d, a et mT sont non nuls
 
     virtual ~TrajetSimple ( );
     // Mode d'emploi : aucun

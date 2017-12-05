@@ -7,7 +7,7 @@
 			   			   florian.mutin@insa-lyon.fr
 *************************************************************************/
 
-//-- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) --
+//- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.cpp) -
 
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
@@ -22,7 +22,7 @@ using namespace std;
  void TrajetCompose::Affiche() const
 // Algorithme : aucun
 {
-	if(liste->first == NULL)
+	if(liste->first == nullptr)
 	{
 		cout << "Erreur : TrajetCompose vide"<<endl;
 		return;
@@ -36,14 +36,14 @@ using namespace std;
  bool TrajetCompose::Add(const Trajet* t) const
 // Algorithme : on ajoute le trajet *t en fin de liste
  {
- 	if(liste->first == NULL)
+ 	if(liste->first == nullptr)
 	{
 		cout<<"Erreur : TrajetCompose vide"<<endl;
 		return false;
 	}
 	ElementListe* cur = liste->first;
 	ElementListe* next = cur->suivant;
-	while(next!=NULL)
+	while(next!=nullptr)
 	{
 		cur = next;
 		next = cur->suivant;
@@ -69,7 +69,7 @@ using namespace std;
  const char* TrajetCompose::GetDepart() const
 // Algorithme : aucun
  {
-	if(liste->first == NULL)
+	if(liste->first == nullptr)
 	{
 		cout<<"Erreur TrajetCompose::GetDepart"<<endl;
 		return "";
@@ -80,14 +80,14 @@ using namespace std;
 const char* TrajetCompose::GetArrivee() const
 // Algorithme : aucun
  {
-	if(liste->first == NULL)
+	if(liste->first == nullptr)
 	{
 		cout<<"Erreur TrajetCompose::GetArrivee"<<endl;
 		return "";
 	}
 	ElementListe* cur = liste->first;
 	ElementListe* next = cur->suivant;
-	while(next!=NULL)
+	while(next!=nullptr)
 	{
 		cur = next;
 		next = cur->suivant;
@@ -105,7 +105,7 @@ TrajetCompose::TrajetCompose (const Trajet* t1, const Trajet* t2)
 		liste->Add(t2);
 	}
 	else {
-		liste = NULL;
+		liste = nullptr;
 		cout<<"Erreur: Les trajets ne se suivent pas"<<endl;
 	}
 #ifdef MAP
