@@ -1,14 +1,15 @@
 /*************************************************************************
                                  TrajetCompose
                              -------------------
-    début                : ${date}
-    copyright            : (C) ${year} par ${user}
+    début                : 15/11/2017
+    copyright            : (C) 2017 par Loïc CASTELLON & Florian MUTIN
+    e-mail               : loic.castellon@insa-lyon.fr
+			   			   florian.mutin@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.h) --
+//-- Réalisation de la classe <TrajetCompose> (fichier TrajetCompose.h) --
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -17,18 +18,15 @@ using namespace std;
 #include "TrajetCompose.h"
 
 //----------------------------------------------------------------- PUBLIC
-
 //----------------------------------------------------- Méthodes publiques
  void TrajetCompose::Affiche() const
 // Algorithme : aucun
-//
 {
 	if(liste->first == NULL)
 	{
 		cout << "Erreur : TrajetCompose vide"<<endl;
 		return;
 	}
-
 	Trajet::Affiche();
 	cout << endl;
 	liste->Affiche("            ");
@@ -36,26 +34,27 @@ using namespace std;
 } //----- Fin de Affiche
 
  bool TrajetCompose::Add(const Trajet* t) const
-// Algorithme : aucun
-//
+// Algorithme : on ajoute le trajet *t en fin de liste
  {
- 	if(liste->first == NULL){
-		cout<<"Erreur TrajetCompose::Add"<<endl;
+ 	if(liste->first == NULL)
+	{
+		cout<<"Erreur : TrajetCompose vide"<<endl;
 		return false;
 	}
-	
 	ElementListe* cur = liste->first;
 	ElementListe* next = cur->suivant;
-	while(next!=NULL){
+	while(next!=NULL)
+	{
 		cur = next;
 		next = cur->suivant;
 	}
-	
-	if(cur->trajet->IsBefore(*t)) {
+	if(cur->trajet->IsBefore(*t))
+	{
 		liste->Add(t);
 		return true;
 	}
-	else {
+	else
+	{
 		cout<<"Erreur: Les trajets ne se suivent pas"<<endl;
 		return false;
 	}
@@ -63,48 +62,42 @@ using namespace std;
 
  bool TrajetCompose::IsBefore(const Trajet& t) const
 // Algorithme : aucun
-//
  {
 	 return Trajet::IsBefore(t);
-
  } //----- Fin de IsBefore
 
  const char* TrajetCompose::GetDepart() const
 // Algorithme : aucun
-//
  {
-	if(liste->first == NULL){
+	if(liste->first == NULL)
+	{
 		cout<<"Erreur TrajetCompose::GetDepart"<<endl;
 		return "";
 	}
 	return liste->first->trajet->GetDepart();
+} //----- Fin de GetDepart
 
- } //----- Fin de GetDepart
-
-
- const char* TrajetCompose::GetArrivee() const
+const char* TrajetCompose::GetArrivee() const
 // Algorithme : aucun
-//
  {
-
-	if(liste->first == NULL){
+	if(liste->first == NULL)
+	{
 		cout<<"Erreur TrajetCompose::GetArrivee"<<endl;
 		return "";
 	}
 	ElementListe* cur = liste->first;
 	ElementListe* next = cur->suivant;
-	while(next!=NULL){
+	while(next!=NULL)
+	{
 		cur = next;
 		next = cur->suivant;
 	}
 	return cur->trajet->GetArrivee();
-
  } //----- Fin de GetArrivee
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetCompose::TrajetCompose (const Trajet* t1, const Trajet* t2)
 // Algorithme : aucun
-//
 {
 	if(t1->IsBefore(*t2)) {
 		liste = new Liste();
@@ -120,10 +113,8 @@ TrajetCompose::TrajetCompose (const Trajet* t1, const Trajet* t2)
 #endif
 } //----- Fin de TrajetCompose
 
-
 TrajetCompose::~TrajetCompose ( )
 // Algorithme : aucun
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetCompose>" << endl;

@@ -1,15 +1,15 @@
 /*************************************************************************
                                   Liste
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/11/2017
+    copyright            : (C) 2017 par Loïc CASTELLON & Florian MUTIN
+    e-mail               : loic.castellon@insa-lyon.fr
+			   			   florian.mutin@insa-lyon.fr
 *************************************************************************/
 
-//-- Réalisation de la classe <Liste> (fichier Liste.cpp) --
+//--------- Réalisation de la classe <Liste> (fichier Liste.cpp) ---------
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -18,11 +18,9 @@ using namespace std;
 #include "Liste.h"
 
 //----------------------------------------------------------------- PUBLIC
-
 //----------------------------------------------------- Méthodes publiques
-
-
 void Liste::Affiche(const char * texte) const
+// Algorithme : aucun
 {
 	ElementListe *cur=first;
 	unsigned int i=1;
@@ -34,12 +32,10 @@ void Liste::Affiche(const char * texte) const
 		cur = cur->suivant;
 		++i;
 	}
-}
-
+} //----- Fin de Affiche
 
 void Liste::Add(const Trajet* t)
-// Algorithme :
-//
+// Algorithme : aucun
 {
 	ElementListe* e = new ElementListe(t);
 	if(first==NULL){
@@ -57,20 +53,17 @@ void Liste::Add(const Trajet* t)
 
 //-------------------------------------------- Constructeurs - destructeur
 Liste::Liste ()
-// Algorithme :
-//
-//:first(NULL)
+// Algorithme : aucun
+:first(NULL)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Liste>" << endl;
 #endif
-first = NULL;
 } //----- Fin de Liste
 
 
 Liste::~Liste ( )
-// Algorithme :
-//
+// Algorithme : aucun
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Liste>" << endl;

@@ -1,12 +1,13 @@
 /*************************************************************************
                                  ElementListe
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/11/2017
+    copyright            : (C) 2017 par Loïc CASTELLON & Florian MUTIN
+    e-mail               : loic.castellon@insa-lyon.fr
+			   			   florian.mutin@insa-lyon.fr
 *************************************************************************/
 
-//---vopi- Interface de la classe <ElementListe> (fichier ElementListe.h) ----
+//---- Interface de la classe <ElementListe> (fichier ElementListe.h) ----
 #if ! defined ( ElementListe_H )
 #define ElementListe_H
 
@@ -15,34 +16,26 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <ElementListe>
-// Cette classe permet d'implémenter les éléments de la classe liste.
-//
+// Cette classe implémente les éléments de la classe Liste.
 //------------------------------------------------------------------------
 
 class ElementListe
 {
 //----------------------------------------------------------------- PUBLIC
-
 public:
 //-------------------------------------------- Constructeurs - destructeur
 	ElementListe (const Trajet* t);
-    // Mode d'emploi : d le départ du trajet, a l'arrivée du trajet et mT le moyen de transport du trajet
-    //
-    // Contrat : aucun
-    //
+    // Mode d'emploi : aucun
+    // Contrat : t est non null
 
     virtual ~ElementListe ( );
     // Mode d'emploi : aucun
-    //
     // Contrat : aucun
-    //
 
-//----------------------------------------------------- Attributs publiques
-const Trajet * trajet;
-ElementListe * suivant;
+//---------------------------------------------------- Attributs publiques
+	const Trajet * trajet;
+	ElementListe * suivant;
+
 };
 
-//-------------------------------- Autres définitions dépendantes de <ElementListe>
-
 #endif // ElementListe_H
-

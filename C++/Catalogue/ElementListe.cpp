@@ -1,15 +1,15 @@
 /*************************************************************************
                                   ElementListe
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/11/2017
+    copyright            : (C) 2017 par Loïc CASTELLON & Florian MUTIN
+    e-mail               : loic.castellon@insa-lyon.fr
+			   			   florian.mutin@insa-lyon.fr
 *************************************************************************/
 
 //-- Réalisation de la classe <ElementListe> (fichier ElementListe.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
-
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
@@ -20,8 +20,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------- Constructeurs - destructeur
 ElementListe::ElementListe (const Trajet* t)
-// Algorithme :
-//
+// Algorithme : aucun
 :trajet(t),suivant(NULL)
 {
 #ifdef MAP
@@ -29,10 +28,8 @@ ElementListe::ElementListe (const Trajet* t)
 #endif
 } //----- Fin de ElementListe
 
-
 ElementListe::~ElementListe ( )
-// Algorithme :
-//
+// Algorithme : aucun
 {
 #ifdef MAP
     cout << "Appel au destructeur de <ElementListe>" << endl;

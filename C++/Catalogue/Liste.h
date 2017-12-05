@@ -1,12 +1,13 @@
 /*************************************************************************
                                   Liste
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/11/2017
+    copyright            : (C) 2017 par Loïc CASTELLON & Florian MUTIN
+    e-mail               : loic.castellon@insa-lyon.fr
+			   			   florian.mutin@insa-lyon.fr
 *************************************************************************/
 
-//---vopi- Interface de la classe <Liste> (fichier Liste.h) ----
+//----------- Interface de la classe <Liste> (fichier Liste.h) -----------
 #if ! defined ( Liste_H )
 #define Liste_H
 
@@ -15,8 +16,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Liste>
-// Cette classe permet d'implémenter une liste chaine d'ElementsListe
-//
+// Cette classe implémente une liste chainée de Trajets
 //------------------------------------------------------------------------
 
 class Liste
@@ -26,32 +26,26 @@ class Liste
 public:
 //----------------------------------------------------- Méthodes publiques
 	void Add(const Trajet* t);
-    // Mode d'emploi : aucun
-    //
-    // Contrat : aucun
-    //
+    // Mode d'emploi : ajout de t en fin de liste
+    // Contrat : t est non null
 
 	void Affiche(const char * texte) const;
-    // Mode d'emploi : aucun
-    //
-    // Contrat : aucun
-    //
+    // Mode d'emploi : affiche tout les élements du contexte appelant en
+	//     affichant texte devant
+    // Contrat : texte est non null
+
 //-------------------------------------------- Constructeurs - destructeur
 	Liste ();
-    // Mode d'emploi : d le départ du ElementListe, a l'arrivée du ElementListe et mT le moyen de transport du ElementListe
-    //
+    // Mode d'emploi : aucun
     // Contrat : aucun
-    //
 
     virtual ~Liste ( );
     // Mode d'emploi : aucun
-    //
     // Contrat : aucun
-    //
 
-//----------------------------------------------------- Attributs publiques
+//---------------------------------------------------- Attributs publiques
 	ElementListe * first;
+
 };
 
 #endif // Liste_H
-

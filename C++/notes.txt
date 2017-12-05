@@ -1,0 +1,13 @@
+- mieux détaillé la structure de donnée Liste (liste chainée) et dessin mémoire
+
+
+- problème sur la liste insister sur la séparation, structure de donné et donnée (au départ pas de liste)
+- Pour la recherche avancée, insisté sur "parcours en profondeur"
+- le constructeur de trajet composé peut être mis dans problème car au moment de faire l'appli c'était pas pratique
+- methode IsBefore à mettre dans remarque plus que amélioration
+- mettre les caractères spéciaux en majuscule sans accent ni cédille
+- choix dans trajet composé si non int ça bug menu pas optimal
+- pas 2 trajet composé identiques
+
+
+- finir par valgrind --leak-check=yes ./demo
