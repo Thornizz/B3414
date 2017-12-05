@@ -34,13 +34,13 @@ public:
     // Contrat :
     //
 
-	bool Add(Trajet* t);
+	bool Add(const Trajet* t) const;
 	// Mode d'emploi :
 	//
 	// Contrat :
 	//
 
-	bool IsBefore(Trajet& t)const;
+	bool IsBefore(const Trajet& t)const;
 	// Mode d'emploi :
 	//
 	// Contrat :
@@ -59,7 +59,7 @@ public:
 	//    
 
 //-------------------------------------------- Constructeurs - destructeur
-      TrajetCompose (Trajet* t1, Trajet* t2);
+      TrajetCompose (const Trajet* t1, const Trajet* t2);
     // Mode d'emploi :
     //
     // Contrat :

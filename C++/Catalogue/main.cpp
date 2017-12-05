@@ -10,12 +10,13 @@ void testTrajetCompose();
 void testCatalogue();
 void application();
 void testApplication(Catalogue &catalogue);
+void majuscule(char *chaine);
 
 int main (){
 
-// Ajout et affichage d'un trajet composé avec valgrind
-// Recherche avancée à bien faire
+// Pas d'ajout d'un trajet déjà existant, trop chaud
 
+// Recherche avancée à bien faire
 //	testTrajetSimple();
 //	testListe();
 //	testTrajetCompose();
@@ -175,8 +176,7 @@ void testTrajetSimple(){
 }
 
 void application(){
-	
-	const unsigned int NB_MAX_CHAR = 100;
+const unsigned int NB_MAX_CHAR = 100;
 
 	cout<<endl;
 	cout<<"******************************"<<endl;
@@ -211,12 +211,15 @@ void application(){
 				cout <<"Saisissez la ville de départ : ";
 				char * depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> depart;
+				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
 				char * arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> arrivee;
+				majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
 				char * moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> moyenTransport;
+				majuscule(moyenTransport);
 				
 				Trajet * t = new TrajetSimple(depart,arrivee,moyenTransport);
 				catalogue.Add(t);
@@ -230,12 +233,15 @@ void application(){
 				cout <<"Saisissez la ville de départ : ";
 				char * depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> depart;
+				majuscule(depart);
 				cout <<"Saisissez une ville étape : ";
 				char * etape = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> etape;
+				majuscule(etape);
 				cout <<"Saisissez le moyen de transport : ";
 				char * moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> moyenTransport;
+				majuscule(moyenTransport);
 				
 				Trajet * td = new TrajetSimple(depart,etape,moyenTransport);
 				
@@ -259,9 +265,11 @@ void application(){
 					cout <<"Saisissez une ville étape : ";
 					etape = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 					cin >> etape;
+					majuscule(etape);
 					cout <<"Saisissez le moyen de transport : ";
 					moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 					cin >> moyenTransport;
+					majuscule(moyenTransport);
 					
 					Trajet * t = new TrajetSimple(etapeCopie,etape,moyenTransport);
 					if(creation)
@@ -288,9 +296,11 @@ void application(){
 				cout <<"Saisissez la ville d'arrivée : ";
 				char * arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> arrivee;
+				majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
 				moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> moyenTransport;
+				majuscule(moyenTransport);
 				
 				Trajet * ta = new TrajetSimple(etapeCopie,arrivee,moyenTransport);
 				if(creation)
@@ -319,9 +329,11 @@ void application(){
 				cout <<"Saisissez la ville de départ : ";
 				char * depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> depart;
+				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
 				char * arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> arrivee;
+				majuscule(arrivee);
 				
 				catalogue.RechercheParcours(depart,arrivee);
 				
@@ -337,9 +349,11 @@ void application(){
 				cout <<"Saisissez la ville de départ : ";
 				char * depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> depart;
+				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
 				char * arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 				cin >> arrivee;
+				majuscule(arrivee);
 				
 				catalogue.RechercheParcoursAvancee(depart,arrivee);
 				
@@ -361,6 +375,17 @@ void application(){
 	cout<<"******************************"<<endl<<endl;
 }
 
+void majuscule(char *chaine)
+{
+	unsigned int i = 0;
+	while (chaine[i] != '\0')
+	{
+		if (chaine[i]  >= 97 &&  chaine[i] <= 122)
+			chaine[i] = chaine[i] - 32;
+		i++;
+	}
+}
+
 void testApplication(Catalogue &catalogue)
 {
 	
@@ -369,50 +394,50 @@ void testApplication(Catalogue &catalogue)
 	char * depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	char * arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	char * moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Lyon");
-	strcpy(arrivee,"Paris");
-	strcpy(moyenTransport,"Train");
+	strcpy(depart,"LYON");
+	strcpy(arrivee,"PARIS");
+	strcpy(moyenTransport,"TRAIN");
 	TrajetSimple * t1 = new TrajetSimple(depart,arrivee,moyenTransport);
 	catalogue.Add(t1);
 	
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Marseille");
-	strcpy(arrivee,"Lyon");
-	strcpy(moyenTransport,"Voiture");
+	strcpy(depart,"MARSEILLE");
+	strcpy(arrivee,"LYON");
+	strcpy(moyenTransport,"VOITURE");
 	TrajetSimple * t3 = new TrajetSimple(depart,arrivee,moyenTransport);
 	catalogue.Add(t3);
 	
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Lille");
-	strcpy(arrivee,"Villeurbanne");
-	strcpy(moyenTransport,"Helicopter");
+	strcpy(depart,"LILLE");
+	strcpy(arrivee,"VILLEURBANNE");
+	strcpy(moyenTransport,"HELICOPTERE");
 	TrajetSimple * t4 = new TrajetSimple(depart,arrivee,moyenTransport);
 	catalogue.Add(t4);
 	
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Marseille");
-	strcpy(arrivee,"Orange");
-	strcpy(moyenTransport,"Helicopter");
+	strcpy(depart,"MARSEILLE");
+	strcpy(arrivee,"ORANGE");
+	strcpy(moyenTransport,"HELICOPTERE");
 	TrajetSimple * tc1e1 = new TrajetSimple(depart,arrivee,moyenTransport);
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Orange");
-	strcpy(arrivee,"Montelimar");
+	strcpy(depart,"ORANGE");
+	strcpy(arrivee,"MONTELIMAR");
 	strcpy(moyenTransport,"Train");
 	TrajetSimple * tc1e2 = new TrajetSimple(depart,arrivee,moyenTransport);
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Montelimar");
-	strcpy(arrivee,"Lyon");
-	strcpy(moyenTransport,"Helicopter");
+	strcpy(depart,"MONTELIMAR");
+	strcpy(arrivee,"LYON");
+	strcpy(moyenTransport,"HELICOPTERE");
 	TrajetSimple * tc1e3 = new TrajetSimple(depart,arrivee,moyenTransport);
 	TrajetCompose * tc1 = new TrajetCompose(tc1e1,tc1e2);
 	tc1->Add(tc1e3);
@@ -421,30 +446,30 @@ void testApplication(Catalogue &catalogue)
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Biarritz");
-	strcpy(arrivee,"Bordeaux");
-	strcpy(moyenTransport,"Voiture");
+	strcpy(depart,"BIARITZ");
+	strcpy(arrivee,"BORDEAUX");
+	strcpy(moyenTransport,"VOITURE");
 	TrajetSimple * tc2e1 = new TrajetSimple(depart,arrivee,moyenTransport);
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Bordeaux");
-	strcpy(arrivee,"Nantes");
-	strcpy(moyenTransport,"Train");
+	strcpy(depart,"BORDEAUX");
+	strcpy(arrivee,"NANTES");
+	strcpy(moyenTransport,"TRAIN");
 	TrajetSimple * tc2e2 = new TrajetSimple(depart,arrivee,moyenTransport);
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Nantes");
-	strcpy(arrivee,"Orleans");
-	strcpy(moyenTransport,"Voiture");
+	strcpy(depart,"NANTES");
+	strcpy(arrivee,"ORLEANS");
+	strcpy(moyenTransport,"VOITURE");
 	TrajetSimple * tc2e3 = new TrajetSimple(depart,arrivee,moyenTransport);
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Orleans");
-	strcpy(arrivee,"Paris");
-	strcpy(moyenTransport,"Velo");
+	strcpy(depart,"ORLEANS");
+	strcpy(arrivee,"PARIS");
+	strcpy(moyenTransport,"VELO");
 	TrajetSimple * tc2e4 = new TrajetSimple(depart,arrivee,moyenTransport);
 	TrajetCompose * tc2 = new TrajetCompose(tc2e1,tc2e2);
 	tc2->Add(tc2e3);
@@ -454,34 +479,34 @@ void testApplication(Catalogue &catalogue)
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Villeurbanne");
-	strcpy(arrivee,"Lyon");
-	strcpy(moyenTransport,"Pied");
+	strcpy(depart,"VILLEURBANNE");
+	strcpy(arrivee,"LYON");
+	strcpy(moyenTransport,"PIED");
 	TrajetSimple * t5 = new TrajetSimple(depart,arrivee,moyenTransport);
 	catalogue.Add(t5);
 	
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Lille");
-	strcpy(arrivee,"Paris");
-	strcpy(moyenTransport,"Velo");
+	strcpy(depart,"LILLE");
+	strcpy(arrivee,"PARIS");
+	strcpy(moyenTransport,"velo");
 	TrajetSimple * t2 = new TrajetSimple(depart,arrivee,moyenTransport);
 	catalogue.Add(t2);
 	
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Lille");
-	strcpy(arrivee,"Bergues");
-	strcpy(moyenTransport,"Helicopter");
+	strcpy(depart,"LILLE");
+	strcpy(arrivee,"BERGUES");
+	strcpy(moyenTransport,"HELICOPTERE");
 	TrajetSimple * tc3e1 = new TrajetSimple(depart,arrivee,moyenTransport);
 	depart = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	arrivee = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
 	moyenTransport = (char *) malloc(sizeof(char)*NB_MAX_CHAR);
-	strcpy(depart,"Bergues");
-	strcpy(arrivee,"Paris");
-	strcpy(moyenTransport,"Train");
+	strcpy(depart,"BERGUES");
+	strcpy(arrivee,"PARIS");
+	strcpy(moyenTransport,"TRAIN");
 	TrajetSimple * tc3e2 = new TrajetSimple(depart,arrivee,moyenTransport);
 	TrajetCompose * tc3 = new TrajetCompose(tc3e1,tc3e2);
 	catalogue.Add(tc3);

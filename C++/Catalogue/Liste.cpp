@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-void Liste::Affiche(const char * texte)
+void Liste::Affiche(const char * texte) const
 {
 	ElementListe *cur=first;
 	unsigned int i=1;
@@ -37,7 +37,7 @@ void Liste::Affiche(const char * texte)
 }
 
 
-void Liste::Add(Trajet* t)
+void Liste::Add(const Trajet* t)
 // Algorithme :
 //
 {

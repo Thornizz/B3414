@@ -28,7 +28,7 @@ public:
     // Contrat : aucun
     //
     
-	virtual bool IsBefore(Trajet& t) const;
+	virtual bool IsBefore(const Trajet& t) const;
     // Mode d'emploi : retourne true si le départ de t correspond à l'arrivée du contexte appelant. Sinon retourne false.
     //
     // Contrat : aucun

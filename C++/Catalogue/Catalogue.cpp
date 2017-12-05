@@ -34,14 +34,14 @@ void Catalogue::Affiche () const
 	cout<<"}"<<endl;
 } //----- Fin de Affiche
 
-void Catalogue::Add (Trajet* t)
+void Catalogue::Add (const Trajet* t) const
 // Algorithme : aucun
 //
 {
 	liste->Add(t);
 } //----- Fin de Add
 
-unsigned int Catalogue::RechercheParcours(const char* depart,const char* arrivee)
+unsigned int Catalogue::RechercheParcours(const char* depart,const char* arrivee) const
 // Algorithme : aucun
 //
 {
@@ -92,7 +92,7 @@ unsigned int Catalogue::RechercheParcours(const char* depart,const char* arrivee
 	return cpt;
 } //----- Fin de RechercheParcours
 
-void Catalogue::RechercheParcoursAvancee(const char* depart,const char* arrivee)
+void Catalogue::RechercheParcoursAvancee(const char* depart,const char* arrivee) const
 // Algorithme : aucun
 //
 {
@@ -146,7 +146,7 @@ Catalogue::~Catalogue ( )
 //------------------------------------------------------------------ PRIVE
 //------------------------------------------------------- Methodes privées
 
-void Catalogue::rechercheRecursive(const char* depart,const char* arrivee, unsigned int* tab, unsigned int lengthTab,unsigned int position)
+void Catalogue::rechercheRecursive(const char* depart,const char* arrivee, unsigned int* tab, const unsigned int lengthTab,const unsigned int position) const
 // Algorithme : aucun
 //
 {		

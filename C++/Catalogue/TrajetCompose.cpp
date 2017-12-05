@@ -19,7 +19,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
- void TrajetCompose::Affiche()const
+ void TrajetCompose::Affiche() const
 // Algorithme : aucun
 //
 {
@@ -35,7 +35,7 @@ using namespace std;
 	 
 } //----- Fin de Affiche
 
- bool TrajetCompose::Add(Trajet* t)
+ bool TrajetCompose::Add(const Trajet* t) const
 // Algorithme : aucun
 //
  {
@@ -61,7 +61,7 @@ using namespace std;
 	}
  } //----- Fin de Add
 
- bool TrajetCompose::IsBefore(Trajet& t)const
+ bool TrajetCompose::IsBefore(const Trajet& t) const
 // Algorithme : aucun
 //
  {
@@ -69,7 +69,7 @@ using namespace std;
 
  } //----- Fin de IsBefore
 
- const char* TrajetCompose::GetDepart()const
+ const char* TrajetCompose::GetDepart() const
 // Algorithme : aucun
 //
  {
@@ -82,7 +82,7 @@ using namespace std;
  } //----- Fin de GetDepart
 
 
- const char* TrajetCompose::GetArrivee()const
+ const char* TrajetCompose::GetArrivee() const
 // Algorithme : aucun
 //
  {
@@ -102,7 +102,7 @@ using namespace std;
  } //----- Fin de GetArrivee
 
 //-------------------------------------------- Constructeurs - destructeur
-TrajetCompose::TrajetCompose (Trajet* t1, Trajet* t2)
+TrajetCompose::TrajetCompose (const Trajet* t1, const Trajet* t2)
 // Algorithme : aucun
 //
 {

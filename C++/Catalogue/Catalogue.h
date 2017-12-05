@@ -32,19 +32,19 @@ public:
     // Contrat : aucun
     //
     
-	void Add(Trajet* t);
+	void Add(const Trajet* t) const;
     // Mode d'emploi : ajoute un trajet possible
     //
     // Contrat : aucun
     //
     
-	unsigned int RechercheParcours(const char* depart, const char* arrivee);
+	unsigned int RechercheParcours(const char* depart, const char* arrivee) const;
     // Mode d'emploi : recherche de trajets qui vont de depart à arrivee et renvoie le nombre de solution
     //
     // Contrat : aucun
     //
     
-	void RechercheParcoursAvancee(const char* depart, const char* arrivee);
+	void RechercheParcoursAvancee(const char* depart, const char* arrivee) const;
     // Mode d'emploi : recherche de compositions de trajets qui vont de depart à arrivee et renvoie le nombre de solution
     //
     // Contrat : aucun
@@ -71,12 +71,11 @@ protected:
 	Liste* liste;
 
 
-
 //------------------------------------------------------------------ PRIVE
 
 private:
 //------------------------------------------------------- Methodes privées
-	void rechercheRecursive (const char* depart, const char* arrivee, unsigned int* tab, unsigned int lengthTab,unsigned int position);
+	void rechercheRecursive (const char* depart, const char* arrivee, unsigned int* tab,const unsigned int lengthTab,const unsigned int position) const;
     // Mode d'emploi : sous methode de RechercheParcoursAvancee qui recherche de compositions de trajets qui vont de depart à arrivee et renvoie le nombre de solution
     //
     // Contrat : aucun

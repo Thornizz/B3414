@@ -28,7 +28,7 @@ void TrajetSimple::Affiche () const
 	cout << " | " << moyenTransport;
 } //----- Fin de Affiche
 
-bool TrajetSimple::IsBefore (Trajet& t) const
+bool TrajetSimple::IsBefore (const Trajet& t) const
 // Algorithme : aucun
 //
 {

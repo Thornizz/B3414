@@ -25,13 +25,13 @@ class Liste
 
 public:
 //----------------------------------------------------- Méthodes publiques
-	void Add(Trajet* t);
+	void Add(const Trajet* t);
     // Mode d'emploi : aucun
     //
     // Contrat : aucun
     //
 
-	void Affiche(const char * texte);
+	void Affiche(const char * texte) const;
     // Mode d'emploi : aucun
     //
     // Contrat : aucun

@@ -19,7 +19,7 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------- Constructeurs - destructeur
-ElementListe::ElementListe (Trajet* t)
+ElementListe::ElementListe (const Trajet* t)
 // Algorithme :
 //
 :trajet(t),suivant(NULL)
