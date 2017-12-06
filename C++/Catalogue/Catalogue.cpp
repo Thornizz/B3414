@@ -111,7 +111,7 @@ void Catalogue::RechercheParcoursAvancee(const char* depart,
 		++nbTrajet;
 		cur=cur->suivant;
 	}
-	unsigned int * tab = new unsigned int;
+	unsigned int * tab = new unsigned int[nbTrajet];
 	for(unsigned int i = 0 ; i < nbTrajet ; i++)
 	{
 		tab[i] = 0;
@@ -123,7 +123,7 @@ void Catalogue::RechercheParcoursAvancee(const char* depart,
 	rechercheRecursive(depart,arrivee,tab,nbTrajet,1);
 	cout<<"{"<<endl;
 	
-	delete tab;
+	delete[] tab;
 } //----- Fin de RechercheParcoursAvancee
 
 //-------------------------------------------- Constructeurs - destructeur
