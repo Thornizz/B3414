@@ -52,48 +52,93 @@ function [] = test()
 %     plot(frequence,spectreFourier);
 %     title('spectre S en frequence');
 %     
-%     resultatInvFourier = tfourinv(spectreFourier');
+%     resultatInvFourier = real(tfourinv(spectreFourier'));
 %     subplot(3,1,3)
 %     plot(temps,resultatInvFourier)
 %     title('S = invFourier(spectre S en frequence)');
      
     % MODULATION
-      subplot(4,2,1);
-      plot(temps,s1);
+%       S1 = real(s1);
+%       S2 = real(s2);
+%     
+%       subplot(3,2,1);
+%       plot(temps,S1);
+%       title('S1 = f(t)');
+%       spectreS1=spectreEnFrequenceDejaEchantillone(S1);
+%       subplot(3,2,2);
+%       plot(frequence,spectreS1);
+%       title('spectre S1 en frequence');
+%      
+%       subplot(3,2,3);
+%       plot(temps,S2);
+%       title('S2 = f(t)');
+%       spectreS2=spectreEnFrequenceDejaEchantillone(S2);
+%       subplot(3,2,4);
+%       plot(frequence,spectreS2);
+%       title('spectre S2 en frequence');
+%       
+%       f1 = 1000;
+%       f2 = 300;
+%       c = modulation(N,temps,S1,f1,S2,f2);
+%      
+%       subplot(3,2,5);
+%       plot(temps,c);
+%       title('SModule = f(t)');
+%       spectreC=spectreEnFrequenceDejaEchantillone(c);
+%       subplot(3,2,6);
+%       plot(frequence,spectreC);
+%       title('spectre SModule en frequence');
+     
+    % DEMODULATION
+      S1 = real(s1);
+      S2 = real(s2);
+    
+      subplot(5,2,1);
+      plot(temps,S1);
       title('S1 = f(t)');
-      spectreS1=spectreEnFrequenceDejaEchantillone(s1);
-      subplot(4,2,2);
+      spectreS1=spectreEnFrequenceDejaEchantillone(S1);
+      subplot(5,2,2);
       plot(frequence,spectreS1);
       title('spectre S1 en frequence');
      
-      subplot(4,2,3);
-      plot(temps,s2);
+      subplot(5,2,3);
+      plot(temps,S2);
       title('S2 = f(t)');
-      spectreS2=spectreEnFrequenceDejaEchantillone(s2);
-      subplot(4,2,4);
+      spectreS2=spectreEnFrequenceDejaEchantillone(S2);
+      subplot(5,2,4);
       plot(frequence,spectreS2);
       title('spectre S2 en frequence');
       
       f1 = 1000;
-      f2 = 300;
-      c = modulation(N,s1,f1,s2,f2);
+      f2 = 200;
+      c = modulation(N,temps,S1,f1,S2,f2);
      
-      subplot(4,2,5);
+      subplot(5,2,5);
       plot(temps,c);
       title('SModule = f(t)');
       spectreC=spectreEnFrequenceDejaEchantillone(c);
-      subplot(4,2,6);
+      subplot(5,2,6);
       plot(frequence,spectreC);
       title('spectre SModule en frequence');
-     
-    % DEMODULATION
+    
+      c = modulation(N,temps,S1,f1,S2,f2);
+      f=f2;
+    
+      d = deModulation(N,temps,c,f);
       
-%       f1 = 600;
-%       f2 = 300;
-%       c = modulation(N,s1,f1,s2,f2);
-%       f=f2;
-%     
-%       d = deModulation(N,c,f);
+      subplot(5,2,7);
+      plot(temps,d);
+      title('SDemodule = f(t)');
+      spectreD=spectreEnFrequenceDejaEchantillone(d);
+      subplot(5,2,8);
+      plot(frequence,spectreD);
+      title('spectre SDemodule en frequence');
+      
+      spectreF = filtre(N,frequence,spectreD);
+      subplot(5,2,10);
+      plot(frequence,spectreF);
+      title('spectre SDemoduleFiltre en frequence');
+      
 end
 
 function [y] = rect(x)
@@ -121,25 +166,36 @@ end
 
 function [spectre] = spectreEnFrequence (x,A,B,N)
     ech = echantillon (x,A,B,N);
-    four = tfour(ech');
+    four = real(tfour(ech'));
     spectre = four';
 end
 
-function [c] = modulation (N,s1,f1,s2,f2)
+function [c] = modulation (N,temps,s1,f1,s2,f2)
      c = zeros(1,N);
      for i=1:N
-         c(i) = s1(i)*cos(2*pi*f1*i) + s2(i)*cos(2*pi*f2*i);
+         c(i) = s1(i)*cos(2*pi*f1*temps(i)) + s2(i)*cos(2*pi*f2*temps(i));
      end
 end
 
-function [d] = deModulation (N,c,f)
+function [d] = deModulation (N,temps,c,f)
      d = zeros(1,N);
      for i=1:N
-         d(i) = c(i)*cos(2*pi*f*i);
+         d(i) = c(i)*cos(2*pi*f*temps(i));
+     end
+end
+
+
+function [f] = filtre(N,frequence,d)
+     LIMITE = 500;
+     f = zeros(1,N);
+     for i=1:N
+         if(abs(frequence(i))<LIMITE)
+             f(i) = d(i);
+         end
      end
 end
 
 function [spectre] = spectreEnFrequenceDejaEchantillone (x)
-    four = tfour(x);
+    four = real(tfour(x));
     spectre = four';
 end
