@@ -25,7 +25,7 @@ function [] = test()
     end   
     
     
-    % AFFICHAGE
+    % ECHANTILLONAGE
 %     echantillon=echantillonage(x6,A,B,N);
 %     plot(temps,echantillon);
 %     title('S = f(t)');
@@ -90,55 +90,80 @@ function [] = test()
 %       title('spectre SModule en frequence');
      
     % DEMODULATION
-      S1 = real(s1);
-      S2 = real(s2);
-    
-      subplot(5,2,1);
-      plot(temps,S1);
-      title('S1 = f(t)');
-      spectreS1=spectreEnFrequenceDejaEchantillone(S1);
-      subplot(5,2,2);
-      plot(frequence,spectreS1);
-      title('spectre S1 en frequence');
-     
-      subplot(5,2,3);
-      plot(temps,S2);
-      title('S2 = f(t)');
-      spectreS2=spectreEnFrequenceDejaEchantillone(S2);
-      subplot(5,2,4);
-      plot(frequence,spectreS2);
-      title('spectre S2 en frequence');
+%       S1 = real(s1);
+%       S2 = real(s2);
+%     
+%       subplot(5,2,1);
+%       plot(temps,S1);
+%       title('S1 = f(t)');
+%       spectreS1=spectreEnFrequenceDejaEchantillone(S1);
+%       subplot(5,2,2);
+%       plot(frequence,spectreS1);
+%       title('spectre S1 en frequence');
+%      
+%       subplot(5,2,3);
+%       plot(temps,S2);
+%       title('S2 = f(t)');
+%       spectreS2=spectreEnFrequenceDejaEchantillone(S2);
+%       subplot(5,2,4);
+%       plot(frequence,spectreS2);
+%       title('spectre S2 en frequence');
+%       
+%       f1 = 1000;
+%       f2 = 200;
+%       c = modulation(N,temps,S1,f1,S2,f2);
+%      
+%       subplot(5,2,5);
+%       plot(temps,c);
+%       title('SModule = f(t)');
+%       spectreC=spectreEnFrequenceDejaEchantillone(c);
+%       subplot(5,2,6);
+%       plot(frequence,spectreC);
+%       title('spectre SModule en frequence');
+%     
+%       c = modulation(N,temps,S1,f1,S2,f2);
+%       f=f1;
+%     
+%       d = deModulation(N,temps,c,f);
+%       
+%       subplot(5,2,7);
+%       plot(temps,d);
+%       title('SDemodule = f(t)');
+%       spectreD=spectreEnFrequenceDejaEchantillone(d);
+%       subplot(5,2,8);
+%       plot(frequence,spectreD);
+%       title('spectre SDemodule en frequence');
+%       
+%       spectreF = filtre(N,frequence,spectreD);
+%       subplot(5,2,10);
+%       plot(frequence,spectreF);
+%       title('spectre SDemoduleFiltre en frequence');
+%     
+%       SDemoduleFiltre = real(tfourinv(spectreF));
+%       subplot(5,2,9)
+%       plot(temps,SDemoduleFiltre)
+%       title('S = invFourier(spectre SDemoduleFiltre en frequence)');
       
-      f1 = 1000;
-      f2 = 200;
-      c = modulation(N,temps,S1,f1,S2,f2);
-     
-      subplot(5,2,5);
-      plot(temps,c);
-      title('SModule = f(t)');
-      spectreC=spectreEnFrequenceDejaEchantillone(c);
-      subplot(5,2,6);
-      plot(frequence,spectreC);
-      title('spectre SModule en frequence');
-    
-      c = modulation(N,temps,S1,f1,S2,f2);
-      f=f2;
-    
-      d = deModulation(N,temps,c,f);
-      
-      subplot(5,2,7);
-      plot(temps,d);
-      title('SDemodule = f(t)');
-      spectreD=spectreEnFrequenceDejaEchantillone(d);
-      subplot(5,2,8);
-      plot(frequence,spectreD);
-      title('spectre SDemodule en frequence');
-      
-      spectreF = filtre(N,frequence,spectreD);
-      subplot(5,2,10);
-      plot(frequence,spectreF);
-      title('spectre SDemoduleFiltre en frequence');
-      
+    % ALIASING
+%       S = real(s1);
+%       
+%       for i=0:4
+%         G(N,i*1000,S,temps,frequence,i);
+%       end
+end
+
+function [] = G(N,f,S,temps,frequence,position)
+      G = zeros(1,N);
+      for i=1:N
+          G(i) = S(i)*cos(2*pi*f*temps(i));
+      end
+      subplot(5,2,2*position+1);
+      plot(temps,G);
+      title(strcat('G(',int2str(f),') = f(t)'));
+      spectreG=spectreEnFrequenceDejaEchantillone(G);
+      subplot(5,2,2*position+2);
+      plot(frequence,spectreG);
+      title(strcat('spectre G(',int2str(f),') en frequence'));
 end
 
 function [y] = rect(x)
@@ -148,7 +173,6 @@ function [y] = rect(x)
         y = 0;
     end
 end
-
 
 function [e] = echantillon (x,A,B,N)
     T=(B-A)/N;
@@ -184,13 +208,12 @@ function [d] = deModulation (N,temps,c,f)
      end
 end
 
-
 function [f] = filtre(N,frequence,d)
      LIMITE = 500;
      f = zeros(1,N);
      for i=1:N
          if(abs(frequence(i))<LIMITE)
-             f(i) = d(i);
+             f(i) = 2*d(i);
          end
      end
 end
