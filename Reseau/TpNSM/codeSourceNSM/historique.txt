@@ -1,0 +1,7 @@
+***** loic est connecté *****
+***** flo est connecté *****
+flo : bonjour
+loic : fr
+loic : efeze
+***** loic est déconnecté *****
+***** flo est déconnecté *****
