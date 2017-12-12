@@ -2,12 +2,21 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * 
+ *  Cette classe lance une fenêtre graphique pour l'acceuil du client 
+ *  @author Loïc CASTELLON et Florian MUTIN 3IF4
+ * 
+ */
 public class AcceuilClient extends JPanel implements ActionListener
 {
 	private JButton boutton;
 	private JTextField textField;
 	private IHMClient ihmClient;
-	
+	/**
+	 *Constructeur de AcceuilCLient, lance la fenêtre d'acceuil du client
+	 * @param ihmC fenêtre graphique où il y aura l'acceuil du client
+	 */
 	public AcceuilClient(IHMClient ihmC)
 	{
 		super();
@@ -52,6 +61,10 @@ public class AcceuilClient extends JPanel implements ActionListener
 		this.add(boutton);
 	}
 	
+	/**
+	 * Cette méthode capte les clics de souris sur le bouton
+	 * @param e un évènement
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		String pseudo = textField.getText();

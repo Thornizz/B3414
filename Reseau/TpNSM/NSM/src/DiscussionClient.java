@@ -1,7 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+/**
+ * 
+ *  Cette classe implémente une fenêtre pour une discussion
+ *  @author Loïc CASTELLON et Florian MUTIN 3IF4
+ * 
+ */
 public class DiscussionClient extends JPanel implements ActionListener
 {
 	private JButton envoyer;
@@ -15,7 +20,11 @@ public class DiscussionClient extends JPanel implements ActionListener
 	private JScrollPane scrollPane;
 	
 	private IHMClient ihmClient;
-	
+	/**
+	 * Gère les messages sur la fenêtre de discussion
+	 * @param pseudo le pseudo du client
+	 * @param ihmC la fenêtre graphique de la discussion
+	 */
 	public DiscussionClient(String pseudo, IHMClient ihmC)
 	{
 		super();
@@ -72,7 +81,9 @@ public class DiscussionClient extends JPanel implements ActionListener
 		client = new Client(Server.IP,Server.PORT,pseudo,this);
 		this.ihmClient = ihmC;
 	}
-	
+	/**
+	 * Capte les clics de souris sur les boutons et gère les effets des boutons
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == envoyer)
@@ -89,7 +100,10 @@ public class DiscussionClient extends JPanel implements ActionListener
 			ihmClient.start();
 		}
 	}
-	
+	/**
+	 * Affiche un message sur la discussion
+	 * @param texte le message à afficher
+	 */
 	public void affiche (String texte)
 	{
 		text.append(texte+'\n');
