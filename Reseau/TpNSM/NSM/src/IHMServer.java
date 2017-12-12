@@ -68,7 +68,7 @@ public class IHMServer extends JFrame implements ActionListener
 			System.out.println("Le port "+ port +" est reservé.");
 			return;
 		}
-		new Server(5001,this);
+		new Server(this);
 	}
 	
 	public void affiche (String texte)

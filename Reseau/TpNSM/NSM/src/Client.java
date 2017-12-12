@@ -25,8 +25,6 @@ public class Client
       	    socket = new Socket(ip,port);
       	    ThreadListeningClient threadListeningClient = new ThreadListeningClient(socket,this);
       	  	threadListeningClient.start();
-      	    ThreadListeningClavier threadListeningClavier = new ThreadListeningClavier(this);
-      	    threadListeningClavier.start();
       	    socIn = new BufferedReader(
       	    		new InputStreamReader(socket.getInputStream()));    
       	    socOut= new PrintStream(socket.getOutputStream());
