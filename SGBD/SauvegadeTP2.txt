@@ -1,0 +1,68 @@
+---1.1
+/*create or replace view CentMillionOuPlus as
+select * from Country where population >100000000
+;
+*/
+/*
+select * from CENTMILLIONOUPLUS;
+
+select * from country where population >1000000000;
+*/
+---1.3
+/*
+insert into CENTMILLIONOUPLUS
+values ('LittleBoy', 'LIBO', null, null, 10, 10,50);
+*/
+
+
+---1.4
+/*
+create or replace view Europe as
+select Country from Encompasses where continent = 'Europe';
+
+select * from Europe;
+*/
+
+--il s'ajoute dans la table country mais pas dans la vue europe mais avec un join il aurait pas réussi 
+
+--1.5
+/*
+create or replace view CountryOrganization as
+select m.country as country ,
+    O.Abbreviation as organization ,
+    O.Name as organizationName ,
+    O.City as organizationCity ,
+    O.Country as organizationCountry ,
+    O.Province as organizationProvince ,
+m.type as membershipType
+from is_member m, organization O
+where m.Organization = O.abbreviation ;
+-- a completer pour insert, udpdate, delete...
+create or replace trigger InsertionCountryOrganisation
+  instead of
+  insert
+  on CountryOrganization
+  begin
+    insert into is_membre values(:NEW.country,:NEW.Abbreviation,:NEW.membershipType);
+    insert into organization values(:NEW.organization,:NEW.organizationName,:NEW.organizationCity,:NEW.organizationCountry,:NEW.organizationProvince,null);
+  end;
+*/
+--2.1
+/*
+create table t(a integer, b integer);
+insert into t values (0,0);
+insert into t values (2,3);
+insert into t values (0,1);
+
+grant select, update, insert, delete on t to fmutin;
+
+commit;
+
+  */
+
+
+
+floMut :
+
+ create synonym t for lcastellon.t;
+select * from  t;
