@@ -15,13 +15,14 @@ public class ThreadListeningClient extends Thread
 	
 	public void run()
 	{
-	    byte[] buf = new byte[1000];
-	    DatagramPacket recv = new DatagramPacket(buf,buf.length);
 		try
 		{
     		while (true) {
+    		    byte[] buf = new byte[1000];
+    		    DatagramPacket recv = new DatagramPacket(buf,buf.length);
     	    	s.receive(recv);
     	    	String recu = new String(buf);
+    	    	System.out.println("RECU : "+recu);
     	    	c.affiche(recu);
     		}
     	}

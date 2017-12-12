@@ -14,6 +14,7 @@ public class AcceuilClient extends JPanel implements ActionListener
 	private JButton boutton;
 	private JTextField textField;
 	private IHMClient ihmClient;
+	
 	/**
 	 *
 	 * @param ihmC fenêtre graphique où il y aura l'acceuil du client
@@ -63,8 +64,8 @@ public class AcceuilClient extends JPanel implements ActionListener
 	}
 	
 	/**
-	 * Cette méthode capte les clics de souris sur le bouton
-	 * @param e un évènement
+	 * Au clic sur le bouton on fait passer la fenêtre en mode discussion si un pseudo est renseigné
+	 * 
 	 */
 	public void actionPerformed(ActionEvent e)
 	{

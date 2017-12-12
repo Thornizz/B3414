@@ -1,5 +1,5 @@
 /**
- * Classe l'affichage d'un serveur.
+ * Classe pour l'affichage d'un serveur.
  * 
  * @author Loïc CASTELLON & Florian MUTIN 3IF4
  * 

@@ -58,7 +58,7 @@ public class Client
         }
     }
 	/**
-	 * Permet l'affiche sur la discussion d'un message reçu 
+	 * Permet l'affichage sur la fenêtre d'un message reçu 
 	 * @param texte le message à afficher
 	 */
 	public void affiche(String texte)
@@ -66,8 +66,9 @@ public class Client
 		discussionClient.affiche(texte);
 		System.out.println(texte);
 	}
+	
 	/**
-	 * Ferme la discussion
+	 * Ferme le client
 	 */
 	public void close()
 	{

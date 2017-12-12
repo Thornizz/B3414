@@ -25,7 +25,9 @@ public class Client
 	    	
 	    	new ThreadListeningClient(s,this);
 	    	
-	    	envoyer("***** "+pseudo+" est connecté *****");
+	    	String texte ="***** "+pseudo+" est connecté *****";
+	    	DatagramPacket dp = new DatagramPacket(texte.getBytes(),texte.length(),address,port);
+		    s.send(dp);
         }
         catch (IOException e)
         {
@@ -33,7 +35,7 @@ public class Client
             System.exit(1);
         }
     }
-	
+
 	public void affiche(String texte)
 	{
 		discussionClient.affiche(texte);
@@ -43,12 +45,14 @@ public class Client
 	public void envoyer(String texte)
 	{    	
 		if(texte.equals(Server.DECONNEXION))
-		{
-			envoyer("***** "+pseudo+" est déconnecté *****");
+		{	    	
 			try
 			{
-			s.leaveGroup(address);
-			s.close();
+		    	String decoTexte ="***** "+pseudo+" est déconnecté *****";
+		    	DatagramPacket dp = new DatagramPacket(decoTexte.getBytes(),decoTexte.length(),address,port);
+			    s.send(dp);
+				s.leaveGroup(address);
+				s.close();
 			}
 	        catch (IOException e)
 	        {
@@ -58,6 +62,7 @@ public class Client
 		}
 		else
 		{
+			texte = this.pseudo+" : "+texte;
 	    	DatagramPacket dp = new DatagramPacket(texte.getBytes(),texte.length(),address,port);
 			try
 			{

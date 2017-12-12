@@ -10,6 +10,10 @@ import javax.swing.*;
 public class IHMClient extends JFrame
 {
 
+	
+	/**
+	 * Lance une fenêtre sur le menu
+	 */
 	public IHMClient()
 	{
 		super();
@@ -22,7 +26,7 @@ public class IHMClient extends JFrame
 		this.setVisible(true);
 	}
 	/**
-	 * Modifie le titre de la fenêtre graphique
+	 * Lance un client et affiche la discussion
 	 * @param pseudo pseudo du client
 	 */
 	public void go (String pseudo)
@@ -31,8 +35,9 @@ public class IHMClient extends JFrame
 		this.setContentPane(new DiscussionClient(pseudo,this));
 		this.setVisible(true);
 	}
+	
 	/**
-	 * Rend visible la fenêtre graphique
+	 * Lance le menu
 	 */
 	public void start ()
 	{
