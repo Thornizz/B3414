@@ -14,7 +14,7 @@ public class AcceuilClient extends JPanel implements ActionListener
 	private JTextField textField;
 	private IHMClient ihmClient;
 	/**
-	 *Constructeur de AcceuilCLient, lance la fenêtre d'acceuil du client
+	 *
 	 * @param ihmC fenêtre graphique où il y aura l'acceuil du client
 	 */
 	public AcceuilClient(IHMClient ihmC)
