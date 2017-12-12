@@ -2,6 +2,12 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * 
+ *  Cette classe gère chaque client 
+ *  @author Loïc CASTELLON et Florian MUTIN 3IF4
+ * 
+ */
 public class Client
 {
 	private String pseudo;
@@ -9,7 +15,14 @@ public class Client
     private PrintStream socOut;
     private BufferedReader socIn;
     private DiscussionClient discussionClient;
-	
+    
+	/**
+	 * 
+	 * @param ip ip à laquelle le client se connecte
+	 * @param port port auquel le cient se connecte
+	 * @param pseudo pseudo du client
+	 * @param discussionClient fenêtre de discussion du client
+	 */
 	public Client(String ip,int port, String pseudo, DiscussionClient discussionClient)
 	{
 		this.pseudo = pseudo;
@@ -43,13 +56,18 @@ public class Client
             System.exit(1);
         }
     }
-	
+	/**
+	 * Permet l'affiche sur la discussion d'un message reçu 
+	 * @param texte le message à afficher
+	 */
 	public void affiche(String texte)
 	{
 		discussionClient.affiche(texte);
 		System.out.println(texte);
 	}
-	
+	/**
+	 * Ferme la discussion
+	 */
 	public void close()
 	{
         try
@@ -64,7 +82,10 @@ public class Client
 		   	System.exit(1);
 		}
 	}
-
+	/**
+	 * Permet d'envoyer un message sur la discussion
+	 * @param texte le message à envoyer
+	 */
 	public void envoyer(String texte) {
 		if(texte.equals(Server.DECONNEXION))
 		{
