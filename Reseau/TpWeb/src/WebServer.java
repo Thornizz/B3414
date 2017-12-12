@@ -203,7 +203,7 @@ public class WebServer {
 	            System.out.println("REQUETE DELETE");
 	    		String file="";
 	    		if(message.substring(8, 9).equals(" ")){
-	        		System.out.println("pas de nom derriËre DELETE : 403");
+	        		System.out.println("pas de nom derri√®re DELETE : 403");
         	        // Send the response
         	        // Send the headers
         	        out.println("HTTP/1.0 403 Forbidden");
@@ -259,7 +259,7 @@ public class WebServer {
 	            System.out.println("REQUETE PUT");
 	    		String file="";
 	    		if(message.substring(5, 6).equals(" ")){
-	        		System.out.println("pas de nom derriËre PUT : 400");
+	        		System.out.println("pas de nom derri√®re PUT : 400");
         	        // Send the response
         	        // Send the headers
         	        out.println("HTTP/1.0 400 Bad Request");
@@ -281,7 +281,7 @@ public class WebServer {
 		    		
 		            File f = new File(file);
 	                if(!f.exists()){
-	            		System.out.println("Fichier crÈÈ : 201");
+	            		System.out.println("Fichier cr√©√© : 201");
 	            		f.createNewFile();
 
 	        	        // Send the response
@@ -309,7 +309,6 @@ public class WebServer {
 		            		System.out.println(j);
 	                    }
 	            		System.out.println("fin lecture bites");
-
 	                    FileOutputStream outFile = new FileOutputStream(f);
 	                    outFile.write(content);
 	                    outFile.close();
@@ -317,7 +316,7 @@ public class WebServer {
 	            		*/
 	                }
 	                else{
-	            		System.out.println("Fichier dÈj‡ existant : 403");
+	            		System.out.println("Fichier d√©j√† existant : 403");
 	        	        // Send the response
 	        	        // Send the headers
 	        	        out.println("HTTP/1.0 403 Forbidden");
@@ -338,7 +337,7 @@ public class WebServer {
 	            System.out.println("REQUETE POST");
 	    		String file="";
 	    		if(message.substring(6, 7).equals(" ")){
-	        		System.out.println("pas de nom derriËre PUT : 400");
+	        		System.out.println("pas de nom derri√®re PUT : 400");
         	        // Send the response
         	        // Send the headers
         	        out.println("HTTP/1.0 400 Bad Request");
@@ -360,7 +359,7 @@ public class WebServer {
 		    		
 		            File f = new File(file);
 	                if(f.exists()){
-	            		System.out.println("Fichier trouvÈ : 200");
+	            		System.out.println("Fichier trouv√© : 200");
 
 	        	        // Send the response
 	        	        // Send the headers
@@ -389,7 +388,6 @@ public class WebServer {
 		            		System.out.println(j);
 	                    }
 	            		System.out.println("fin lecture bites");
-
 	                    FileOutputStream outFile = new FileOutputStream(f);
 	                    outFile.write(content);
 	                    outFile.close();
