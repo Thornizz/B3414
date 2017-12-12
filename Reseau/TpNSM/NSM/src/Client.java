@@ -21,7 +21,7 @@ public class Client
 	 * @param ip ip à laquelle le client se connecte
 	 * @param port port auquel le cient se connecte
 	 * @param pseudo pseudo du client
-	 * @param discussionClient fenêtre de discussion du client
+	 * @param discussionClient affichage de la discussion côté client
 	 */
 	public Client(String ip,int port, String pseudo, DiscussionClient discussionClient)
 	{
