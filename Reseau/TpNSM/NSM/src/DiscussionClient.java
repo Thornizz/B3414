@@ -1,12 +1,14 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
 /**
  * 
  *  Cette classe implémente une fenêtre pour une discussion
  *  @author Loïc CASTELLON et Florian MUTIN 3IF4
  * 
  */
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
 public class DiscussionClient extends JPanel implements ActionListener
 {
 	private JButton envoyer;

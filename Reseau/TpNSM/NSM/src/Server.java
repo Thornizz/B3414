@@ -1,3 +1,10 @@
+/**
+ * Classe repésentant le serveur du tchat.
+ * 
+ * @author Loïc CASTELLON & Florian MUTIN 3IF4
+ * 
+ */
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -13,7 +20,11 @@ public class Server
 	private String historique;
 	private IHMServer ihmServer;
 	
-	public Server(int port, IHMServer ihmServer)
+	/**
+	 * 
+	 * @param ihmServer l'affichage graphique correspondant au serveur
+	 */
+	public Server(IHMServer ihmServer)
 	{
 		this.ihmServer = ihmServer;
 		try
@@ -56,10 +67,14 @@ public class Server
 
 		sockets = new ArrayList<Socket>();
 		
-		ThreadWaitingServer threadWaitingServer = new ThreadWaitingServer(this,PORT,this.ihmServer);
+		ThreadWaitingServer threadWaitingServer = new ThreadWaitingServer(this,this.PORT,this.ihmServer);
 		threadWaitingServer.start();
 	}
-		
+	
+	/**
+	 * Envoie d'un texte au tout les clients connectés au serveur. Ajout de ce texte à l'historique.
+	 * @param texte le texte à envoyer
+	 */
 	public void envoyer (String texte)
 	{
 		historique += texte + '\n';
@@ -98,14 +113,26 @@ public class Server
 		}
 	}
 
+	/**
+	 * Ajout d'un client à la liste des client connectés.
+	 * @param socket le client à ajouter
+	 */
 	public void add(Socket socket) {
 		sockets.add(socket);
 	}
 
+	/**
+	 * Méthode permettant d'obtenir l'historique de la discussion
+	 * @return l'historique de la discussion
+	 */
 	public String getHistorique() {
 		return historique;
 	}
 
+	/**
+	 * Suppression d'un client de la liste des clients connectés
+	 * @param socket le client à supprimer
+	 */
 	public void remove(Socket socket) {
 		sockets.remove(socket);
 	}

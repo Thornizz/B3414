@@ -1,13 +1,14 @@
-import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
-
 /**
  * 
  *  Cette classe gère chaque client 
  *  @author Loïc CASTELLON et Florian MUTIN 3IF4
  * 
  */
+
+import java.io.*;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 public class Client
 {
 	private String pseudo;
@@ -21,7 +22,7 @@ public class Client
 	 * @param ip ip à laquelle le client se connecte
 	 * @param port port auquel le cient se connecte
 	 * @param pseudo pseudo du client
-	 * @param discussionClient fenêtre de discussion du client
+	 * @param discussionClient affichage de la discussion côté client
 	 */
 	public Client(String ip,int port, String pseudo, DiscussionClient discussionClient)
 	{
@@ -38,8 +39,6 @@ public class Client
       	    socket = new Socket(ip,port);
       	    ThreadListeningClient threadListeningClient = new ThreadListeningClient(socket,this);
       	  	threadListeningClient.start();
-      	    ThreadListeningClavier threadListeningClavier = new ThreadListeningClavier(this);
-      	    threadListeningClavier.start();
       	    socIn = new BufferedReader(
       	    		new InputStreamReader(socket.getInputStream()));    
       	    socOut= new PrintStream(socket.getOutputStream());

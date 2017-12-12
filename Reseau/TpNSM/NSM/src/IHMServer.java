@@ -1,3 +1,10 @@
+/**
+ * Classe l'affichage d'un serveur.
+ * 
+ * @author Loïc CASTELLON & Florian MUTIN 3IF4
+ * 
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import java.net.ServerSocket;
@@ -11,6 +18,9 @@ public class IHMServer extends JFrame implements ActionListener
 	private JTextArea text;
 	private JScrollPane scrollPane;
 	
+	/**
+	 * Création de la fenêtre
+	 */
 	public IHMServer()
 	{
 		super();
@@ -50,11 +60,9 @@ public class IHMServer extends JFrame implements ActionListener
 		this.setVisible(true);
 	}
 	
-	public static void main(String[] args)
-	{
-		new IHMServer();
-	}
-
+	/**
+	 * Lance le serveur à l'appuie sur le bouton
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		final int port = Server.PORT;
@@ -68,13 +76,23 @@ public class IHMServer extends JFrame implements ActionListener
 			System.out.println("Le port "+ port +" est reservé.");
 			return;
 		}
-		new Server(5001,this);
+		new Server(this);
 	}
 	
+	/**
+	 * Affichage d'un texte
+	 * @param texte le texte à afficher
+	 */
 	public void affiche (String texte)
 	{
 		text.append(texte+'\n');
 		JScrollBar vertical = scrollPane.getVerticalScrollBar();
 		vertical.setValue( vertical.getMaximum() );
+	}
+
+	
+	public static void main(String[] args)
+	{
+		new IHMServer();
 	}
 }
