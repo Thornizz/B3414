@@ -1,13 +1,14 @@
-import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
-
 /**
  * 
  *  Cette classe gère chaque client 
  *  @author Loïc CASTELLON et Florian MUTIN 3IF4
  * 
  */
+
+import java.io.*;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
 public class Client
 {
 	private String pseudo;
