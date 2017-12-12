@@ -6,3 +6,6 @@ loic : au revoir
 flo : a demain en tp réseau
 ***** loic est déconnecté *****
 ***** flo est déconnecté *****
+***** mathilde est connecté *****
+***** alexandra est connecté *****
+alexandra : yo
