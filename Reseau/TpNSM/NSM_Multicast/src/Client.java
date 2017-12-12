@@ -1,3 +1,10 @@
+/**
+ * 
+ *  Cette classe gère chaque client 
+ *  @author Loïc CASTELLON et Florian MUTIN 3IF4
+ * 
+ */
+
 import java.io.*;
 import java.net.*;
 
@@ -9,6 +16,11 @@ public class Client
 	private String pseudo;
     private DiscussionClient discussionClient;
 	
+    /**
+     * 
+	 * @param pseudo pseudo du client
+	 * @param discussionClient affichage de la discussion côté client
+     */
 	public Client(String pseudo, DiscussionClient discussionClient)
 	{
     	System.out.println("##### Fenêtre de "+pseudo+" #####"+'\n');
@@ -36,12 +48,21 @@ public class Client
         }
     }
 
+
+	/**
+	 * Permet l'affichage sur la fenêtre d'un message reçu 
+	 * @param texte le message à afficher
+	 */
 	public void affiche(String texte)
 	{
 		discussionClient.affiche(texte);
 		System.out.println(texte);
 	}
 
+	/**
+	 * Permet d'envoyer un message sur la discussion
+	 * @param texte le message à envoyer
+	 */
 	public void envoyer(String texte)
 	{    	
 		if(texte.equals(Server.DECONNEXION))

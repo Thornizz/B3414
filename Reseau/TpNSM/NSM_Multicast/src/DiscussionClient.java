@@ -1,8 +1,14 @@
+/**
+ * 
+ *  Cette classe permet l'affichage d'une discussion côté client
+ *  @author Loïc CASTELLON et Florian MUTIN 3IF4
+ * 
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class DiscussionClient extends JPanel implements ActionListener
 {
 	private JButton envoyer;
@@ -16,7 +22,10 @@ public class DiscussionClient extends JPanel implements ActionListener
 	private JScrollPane scrollPane;
 	
 	private IHMClient ihmClient;
-	
+	/**
+	 * @param pseudo le pseudo du client
+	 * @param ihmC la fenêtre graphique de la discussion
+	 */
 	public DiscussionClient(String pseudo, IHMClient ihmC)
 	{
 		super();
@@ -73,7 +82,10 @@ public class DiscussionClient extends JPanel implements ActionListener
 		client = new Client(pseudo,this);
 		this.ihmClient = ihmC;
 	}
-	
+	/**
+	 * Au clic sur le bouton envoyer on envoit le texte si un texte est renseigné
+	 * Au clic sur le bouton deconnection on envoit le message de déconnexion
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getSource() == envoyer)
@@ -90,7 +102,10 @@ public class DiscussionClient extends JPanel implements ActionListener
 			ihmClient.start();
 		}
 	}
-	
+	/**
+	 * Affiche un message
+	 * @param texte le message à afficher
+	 */
 	public void affiche (String texte)
 	{
 		text.append(texte+'\n');

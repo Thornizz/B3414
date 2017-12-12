@@ -1,3 +1,9 @@
+/**
+ * Classe repésentant le serveur du tchat.
+ * 
+ * @author Loïc CASTELLON & Florian MUTIN 3IF4
+ * 
+ */
 public class Server
 {
 	final public static String DECONNEXION = "deco";

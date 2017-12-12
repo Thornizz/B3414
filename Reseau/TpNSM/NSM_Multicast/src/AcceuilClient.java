@@ -1,14 +1,24 @@
+/**
+ * 
+ *  Cette classe lance une fenêtre graphique pour l'acceuil du client 
+ *  @author Loïc CASTELLON et Florian MUTIN 3IF4
+ * 
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class AcceuilClient extends JPanel implements ActionListener
 {
 	private JButton boutton;
 	private JTextField textField;
 	private IHMClient ihmClient;
 	
+	/**
+	 *
+	 * @param ihmC fenêtre graphique où il y aura l'acceuil du client
+	 */
 	public AcceuilClient(IHMClient ihmC)
 	{
 		super();
@@ -53,6 +63,10 @@ public class AcceuilClient extends JPanel implements ActionListener
 		this.add(boutton);
 	}
 	
+	/**
+	 * Au clic sur le bouton on fait passer la fenêtre en mode discussion si un pseudo est renseigné
+	 * 
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		String pseudo = textField.getText();

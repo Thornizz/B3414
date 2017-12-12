@@ -1,9 +1,19 @@
+/**
+ * 
+ *  Cette classe crée une interface graphique pour la discussion
+ *  @author Loïc CASTELLON et Florian MUTIN 3IF4
+ * 
+ */
+
 import javax.swing.*;
 
-@SuppressWarnings("serial")
 public class IHMClient extends JFrame
 {
 
+	
+	/**
+	 * Lance une fenêtre sur le menu
+	 */
 	public IHMClient()
 	{
 		super();
@@ -15,7 +25,10 @@ public class IHMClient extends JFrame
 		this.setContentPane(new AcceuilClient(this));
 		this.setVisible(true);
 	}
-	
+	/**
+	 * Lance un client et affiche la discussion
+	 * @param pseudo pseudo du client
+	 */
 	public void go (String pseudo)
 	{
 		this.setTitle("NSM - "+pseudo);
@@ -23,6 +36,9 @@ public class IHMClient extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Lance le menu
+	 */
 	public void start ()
 	{
 		this.setContentPane(new AcceuilClient(this));
