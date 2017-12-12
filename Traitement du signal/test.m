@@ -30,13 +30,13 @@ function [] = test()
 %     plot(temps,echantillon);
 %     title('S = f(t)');
     
-    % SPECTRE EN FREQUENCE
-%     echantillonSpectre=echantillonage(x6,A,B,N);
+    %  SPECTRE EN FREQUENCE
+%     echantillonSpectre=echantillonage(x4,A,B,N);
 %     subplot(2,1,1);
 %     plot(temps,echantillonSpectre);
 %     title('S = f(t)');
 %     
-%     spectre = spectreEnFrequence(x6,A,B,N);
+%     spectre = spectreEnFrequence(x4,A,B,N);
 %     subplot(2,1,2);
 %     plot(frequence,spectre);
 %     title('spectre S en frequence');
@@ -57,7 +57,7 @@ function [] = test()
 %     plot(temps,resultatInvFourier)
 %     title('S = invFourier(spectre S en frequence)');
      
-    % MODULATION
+%     % MODULATION
 %       S1 = real(s1);
 %       S2 = real(s2);
 %     
@@ -89,7 +89,7 @@ function [] = test()
 %       plot(frequence,spectreC);
 %       title('spectre SModule en frequence');
      
-    % DEMODULATION
+% %     DEMODULATION
 %       S1 = real(s1);
 %       S2 = real(s2);
 %     
@@ -145,11 +145,11 @@ function [] = test()
 %       title('S = invFourier(spectre SDemoduleFiltre en frequence)');
       
     % ALIASING
-%       S = real(s1);
-%       
-%       for i=0:4
-%         G(N,i*1000,S,temps,frequence,i);
-%       end
+      S = real(s1);
+      
+      for i=0:4
+        G(N,i*1000,S,temps,frequence,i);
+      end
 end
 
 function [] = G(N,f,S,temps,frequence,position)

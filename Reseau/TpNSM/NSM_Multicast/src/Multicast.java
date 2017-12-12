@@ -1,5 +1,5 @@
 import java.net.*;
-
+//classe inutile (sauf pour des tests)
 public class Multicast
 {
 	private final String IP = "239.255.80.84";

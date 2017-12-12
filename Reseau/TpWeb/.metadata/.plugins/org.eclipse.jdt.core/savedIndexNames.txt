@@ -1,0 +1,1 @@
+INDEX VERSION 1.129+D:\Users\Loic\Documents\IF 3A\B3414\Reseau\TpWeb\.metadata\.plugins\org.eclipse.jdt.core
