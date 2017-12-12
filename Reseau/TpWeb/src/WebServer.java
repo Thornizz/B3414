@@ -1,7 +1,3 @@
-///A Simple Web Server (WebServer.java)
-
-package http.server;
-
 import java.io.*;
 import java.net.*;
 import java.nio.file.*;
