@@ -10,7 +10,7 @@ import java.text.*;
  * WebServer is a very simple web-server. Any request is responded with a very
  * simple web-page.
  * 
- * @author FloLo
+ * @author Lo�c CASTELLON & Florian MUTIN, 3IF4
  * @version 1.0
  */
 public class WebServer {
@@ -203,7 +203,7 @@ public class WebServer {
 	            System.out.println("REQUETE DELETE");
 	    		String file="";
 	    		if(message.substring(8, 9).equals(" ")){
-	        		System.out.println("pas de nom derrière DELETE : 403");
+	        		System.out.println("pas de nom derriÃ¨re DELETE : 403");
         	        // Send the response
         	        // Send the headers
         	        out.println("HTTP/1.0 403 Forbidden");
@@ -259,7 +259,7 @@ public class WebServer {
 	            System.out.println("REQUETE PUT");
 	    		String file="";
 	    		if(message.substring(5, 6).equals(" ")){
-	        		System.out.println("pas de nom derrière PUT : 400");
+	        		System.out.println("pas de nom derriÃ¨re PUT : 400");
         	        // Send the response
         	        // Send the headers
         	        out.println("HTTP/1.0 400 Bad Request");
@@ -281,7 +281,7 @@ public class WebServer {
 		    		
 		            File f = new File(file);
 	                if(!f.exists()){
-	            		System.out.println("Fichier créé : 201");
+	            		System.out.println("Fichier cree : 201");
 	            		f.createNewFile();
 
 	        	        // Send the response
@@ -290,7 +290,8 @@ public class WebServer {
 	        	        out.println("Server: Bot");
 	        	        // this blank line signals the end of the headers
 	        	        out.println("");
-	        	        out.println("<H1>Fichier "+file+" cree, REMPLISSAGE A FAIRE</H1>");
+	        	        out.println("<H1>Fichier "+file+" cree</H1>");
+	        	        out.flush();
 	        	        
 	        	        //REMPLISSAGE DU FICHIER
 	            		int indexStart = message.indexOf("deflatecontent-length:");
@@ -298,25 +299,20 @@ public class WebServer {
 	            		String longueurStr = message.substring(indexStart+23,indexEnd);
 	            		int longueur = Integer.valueOf(longueurStr);
 	            		System.out.println("deflatecontent-length: "+longueur);
-	        	        /*
-	            		System.out.println("DEBUT REMPLISSAGE DU FICHIER");
-	            		System.out.println("debut lecture bites");
-	                    BufferedInputStream inBuff = new BufferedInputStream(remote.getInputStream());
-	                    byte[] content = new byte[longueur];
-	                    for(int j = 0 ; j<longueur ; j++)
+	            		
+	                    String messagePut = "";
+	                    for(int k=0;k<longueur;k++)
 	                    {
-	                    	inBuff.read(content,j,1);
-		            		System.out.println(j);
+	                      messagePut += (char) in.read();
 	                    }
-	            		System.out.println("fin lecture bites");
-	                    FileOutputStream outFile = new FileOutputStream(f);
-	                    outFile.write(content);
+	                    System.out.println("CONTENT-PUT :"+messagePut);
+	                    
+	                    FileWriter outFile = new FileWriter(f);
+	                    outFile.write(messagePut);
 	                    outFile.close();
-	            		System.out.println("FIN REMPLISSAGE DU FICHIER");
-	            		*/
 	                }
 	                else{
-	            		System.out.println("Fichier déjà existant : 403");
+	            		System.out.println("Fichier dÃ©jÃ  existant : 403");
 	        	        // Send the response
 	        	        // Send the headers
 	        	        out.println("HTTP/1.0 403 Forbidden");
@@ -337,7 +333,7 @@ public class WebServer {
 	            System.out.println("REQUETE POST");
 	    		String file="";
 	    		if(message.substring(6, 7).equals(" ")){
-	        		System.out.println("pas de nom derrière PUT : 400");
+	        		System.out.println("pas de nom derriÃ¨re PUT : 400");
         	        // Send the response
         	        // Send the headers
         	        out.println("HTTP/1.0 400 Bad Request");
@@ -359,7 +355,7 @@ public class WebServer {
 		    		
 		            File f = new File(file);
 	                if(f.exists()){
-	            		System.out.println("Fichier trouvé : 200");
+	            		System.out.println("Fichier trouve : 200");
 
 	        	        // Send the response
 	        	        // Send the headers
@@ -367,32 +363,25 @@ public class WebServer {
 	        	        out.println("Server: Bot");
 	        	        // this blank line signals the end of the headers
 	        	        out.println("");
-	        	        out.println("<H1>Fichier "+file+" complete, A FAIRE</H1>");
+	        	        out.println("<H1>Fichier "+file+" complete</H1>");
 	        	        
 	        	        //REMPLISSAGE DU FICHIER
-	        	        /*
-	            		System.out.println("DEBUT REMPLISSAGE DU FICHIER");
-	            		
 	            		int indexStart = message.indexOf("deflatecontent-length:");
 	            		int indexEnd = message.indexOf("Connection");
 	            		String longueurStr = message.substring(indexStart+23,indexEnd);
 	            		int longueur = Integer.valueOf(longueurStr);
 	            		System.out.println("deflatecontent-length: "+longueur);
 	            		
-	            		System.out.println("debut lecture bites");
-	                    BufferedInputStream inBuff = new BufferedInputStream(remote.getInputStream());
-	                    byte[] content = new byte[longueur];
-	                    for(int j = 0 ; j<longueur ; j++)
+	                    String messagePut = "";
+	                    for(int k=0;k<longueur;k++)
 	                    {
-	                    	inBuff.read(content,j,1);
-		            		System.out.println(j);
+	                      messagePut += (char) in.read();
 	                    }
-	            		System.out.println("fin lecture bites");
-	                    FileOutputStream outFile = new FileOutputStream(f);
-	                    outFile.write(content);
+	                    System.out.println("CONTENT-PUT :"+messagePut);
+	                    
+	                    FileWriter outFile = new FileWriter(f,true);
+	                    outFile.append(messagePut);
 	                    outFile.close();
-	            		System.out.println("FIN REMPLISSAGE DU FICHIER");
-	            		*/
 	                }
 	                else{
 	            		System.out.println("N'existe pas : 404");
