@@ -23,35 +23,7 @@ void majuscule(char *chaine);
 
 int main (){
 	application();
-
-
-
-// ATTENTION NULL et NULLPTR *3 sur les fichierSaauvegarde
-      /* ifstream fichier("demo.txt", ios::in);  // on ouvre en lecture
-        if(fichier)  // si l'ouverture a fonctionné
-        {
-                string ligne;
-		fichier << "Bonjour";
-		while(getline(fichier, ligne))  // tant que l'on peut mettre la ligne dans "contenu"
-		{
-		        cout << ligne << endl;  // on l'affiche
-		}
-
-
-                fichier.close();
-        }
-        else
-                cerr << "Impossible d'ouvrir le fichier !" << endl;
-
-*/
-	//ajout en fin de sauvegarde
-	/*ofstream ofs;
-	ofs.open("test.txt", ofstream::out | ofstream::app);
-	ofs<< endl<<"ajout en fin";
-	ofs.close();
- */
-        return 0;
-
+	return 0;
 
 }
 
@@ -59,7 +31,7 @@ void application()
 // Algorithme : un switch dans un while permet d'évoluer dans le menu
 //      puis de revenir au menu principal autant de fois que souhaité.
 {
-	const unsigned int NB_MAX_CHAR = 100;
+	const unsigned int NB_MAX_CHAR1 = 100;
 
 	cout<<endl;
 	cout<<"******************************"<<endl;
@@ -94,15 +66,15 @@ void application()
 			{
 				cout<<"-- ajouter un trajet simple --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = new char[NB_MAX_CHAR];
+				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = new char[NB_MAX_CHAR];
+				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
 				majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
-				char* moyenTransport = new char[NB_MAX_CHAR];
+				char* moyenTransport = new char[NB_MAX_CHAR1];
 				cin >> moyenTransport;
 				majuscule(moyenTransport);
 
@@ -124,22 +96,22 @@ void application()
 				//saisie d'au moins un départ et une étape
 				cout<<"-- ajouter un trajet composé --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = new char[NB_MAX_CHAR];
+				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez une ville étape : ";
-				char* etape = new char[NB_MAX_CHAR];
+				char* etape = new char[NB_MAX_CHAR1];
 				cin >> etape;
 				majuscule(etape);
 				cout <<"Saisissez le moyen de transport : ";
-				char* moyenTransport = new char[NB_MAX_CHAR];
+				char* moyenTransport = new char[NB_MAX_CHAR1];
 				cin >> moyenTransport;
 				majuscule(moyenTransport);
 
 				Trajet * td = new TrajetSimple(
 											depart,etape,moyenTransport);
 
-				char* etapeCopie = new char[NB_MAX_CHAR];
+				char* etapeCopie = new char[NB_MAX_CHAR1];
 				strcpy(etapeCopie,etape);
 
 				TrajetCompose * tc;
@@ -158,11 +130,11 @@ void application()
 				{
 					//saisie de l'étape
 					cout <<"Saisissez une ville étape : ";
-					etape = new char[NB_MAX_CHAR];
+					etape = new char[NB_MAX_CHAR1];
 					cin >> etape;
 					majuscule(etape);
 					cout <<"Saisissez le moyen de transport : ";
-					moyenTransport = new char[NB_MAX_CHAR];
+					moyenTransport = new char[NB_MAX_CHAR1];
 					cin >> moyenTransport;
 					majuscule(moyenTransport);
 
@@ -180,7 +152,7 @@ void application()
 						tc->Add(t);
 					}
 
-					etapeCopie = new char[NB_MAX_CHAR];
+					etapeCopie = new char[NB_MAX_CHAR1];
 					strcpy(etapeCopie,etape);
 
 					cout << "--" <<endl;
@@ -193,11 +165,11 @@ void application()
 
 				//saisie de l'arrivée
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = new char[NB_MAX_CHAR];
+				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
 				majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
-				moyenTransport = new char[NB_MAX_CHAR];
+				moyenTransport = new char[NB_MAX_CHAR1];
 				cin >> moyenTransport;
 				majuscule(moyenTransport);
 
@@ -233,11 +205,11 @@ void application()
 			{
 				cout<<"-- recherche de parcours --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = new char[NB_MAX_CHAR];
+				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = new char[NB_MAX_CHAR];
+				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
 				majuscule(arrivee);
 
@@ -254,11 +226,11 @@ void application()
 			{
 				cout<<"-- recherche avancée de parcours --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
-				char* depart = new char[NB_MAX_CHAR];
+				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
 				majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
-				char* arrivee = new char[NB_MAX_CHAR];
+				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
 				majuscule(arrivee);
 

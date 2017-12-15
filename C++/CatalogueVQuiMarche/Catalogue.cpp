@@ -11,8 +11,8 @@
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include système
 using namespace std;
-#include <cstring>
 #include <iostream>
+#include <cstring>
 #include <string>
 #include <fstream>
 
@@ -302,6 +302,7 @@ void Catalogue::GetSauvegardeTypeTrajet(bool type) const
 		cerr << "Impossible d'ouvrir le fichier : "+fichierSauvegarde << endl;
 } //----- Fin de GetSauvegardeTypeTrajet
 
+
 void Catalogue::Affiche () const
 // Algorithme : aucun
 {
@@ -413,14 +414,12 @@ void Catalogue::RechercheParcoursAvancee(const char* depart,
 //-------------------------------------------- Constructeurs - destructeur
 Catalogue::Catalogue ()
 // Algorithme : aucun
-//:fichierSauvegarde(nullptr)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
-#ifdef TEST
+	liste = new Liste();
 	fichierSauvegarde = "demo.txt";
-#endif
 } //----- Fin de Catalogue
 
 Catalogue::~Catalogue ( )
