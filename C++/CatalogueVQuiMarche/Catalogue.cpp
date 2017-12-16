@@ -326,6 +326,141 @@ void Catalogue::GetSauvegardeTypeTrajet(bool type) const
 		cerr << "Impossible d'ouvrir le fichier : "+fichierSauvegarde << endl;
 } //----- Fin de GetSauvegardeTypeTrajet
 
+void Catalogue::GetSauvegardeDepartArrivee(string Sdepart, string Sarrivee) const
+// Algorithme : aucun
+{
+	if(fichierSauvegarde.empty())
+	{
+		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
+		return;
+	}
+	ifstream fichier(fichierSauvegarde, ios::in);
+	if(fichier)
+	{
+		string ligne;
+		while(getline(fichier, ligne))
+		{
+			if(!ligne.compare("TS"))
+			{
+				getline(fichier, ligne);
+				string departS2 = ligne;
+				char* depart = new char[NB_MAX_CHAR];
+				strcpy(depart,ligne.c_str());
+
+				getline(fichier, ligne);
+				string arriveeS2 = ligne;
+				char* arrivee = new char[NB_MAX_CHAR];
+				strcpy(arrivee,ligne.c_str());
+
+				getline(fichier, ligne);
+				char* moyenTransport = new char[NB_MAX_CHAR];
+				strcpy(moyenTransport,ligne.c_str());
+
+				Trajet * t = new TrajetSimple(
+										depart,arrivee,moyenTransport);
+				if( (!Sdepart.compare("null") || !Sdepart.compare(departS2)) && (!Sarrivee.compare("null") || !Sarrivee.compare(arriveeS2)) )
+				{
+					if(!Add(t))
+					{
+						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						delete t;
+						cout<<endl;
+					}
+				}
+				else delete t;
+			}
+
+
+			else if(!ligne.compare("TCD"))
+			{
+				//trajet 1
+				getline(fichier, ligne);
+
+				getline(fichier, ligne);
+
+				getline(fichier, ligne);
+
+				getline(fichier, ligne);
+				string departS2=ligne;
+				char* depart1 = new char[NB_MAX_CHAR];
+				strcpy(depart1,ligne.c_str());
+
+				getline(fichier, ligne);
+				char* arrivee1 = new char[NB_MAX_CHAR];
+				strcpy(arrivee1,ligne.c_str());
+
+				getline(fichier, ligne);
+				char* moyenTransport1 = new char[NB_MAX_CHAR];
+				strcpy(moyenTransport1,ligne.c_str());
+
+				Trajet * t1 = new TrajetSimple(
+										depart1,arrivee1,moyenTransport1);
+
+				//trajet 2
+				getline(fichier, ligne);
+
+				getline(fichier, ligne);
+				char* depart2 = new char[NB_MAX_CHAR];
+				strcpy(depart2,ligne.c_str());
+
+				getline(fichier, ligne);
+				char* arrivee2 = new char[NB_MAX_CHAR];
+				strcpy(arrivee2,ligne.c_str());
+
+				getline(fichier, ligne);
+				char* moyenTransport2 = new char[NB_MAX_CHAR];
+				strcpy(moyenTransport2,ligne.c_str());
+
+				Trajet * t2 = new TrajetSimple(
+										depart2,arrivee2,moyenTransport2);
+
+				// création du TrajetCompose
+				TrajetCompose * tc = new TrajetCompose(t1,t2);
+
+
+				getline(fichier, ligne);
+				
+				string arriveeS2;
+				while(ligne.compare("TCF"))
+				{
+					getline(fichier, ligne);
+					char* depart = new char[NB_MAX_CHAR];
+					strcpy(depart,ligne.c_str());
+
+					getline(fichier, ligne);
+					arriveeS2=ligne;
+					char* arrivee = new char[NB_MAX_CHAR];
+					strcpy(arrivee,ligne.c_str());
+
+					getline(fichier, ligne);
+					char* moyenTransport = new char[NB_MAX_CHAR];
+					strcpy(moyenTransport,ligne.c_str());
+
+					Trajet * t = new TrajetSimple(
+											depart,arrivee,moyenTransport);
+					tc->Add(t);
+
+					getline(fichier, ligne);
+				}
+				if( (!Sdepart.compare("null") || !Sdepart.compare(departS2)) && (!Sarrivee.compare("null") || !Sarrivee.compare(arriveeS2)) )
+				{
+					if(!Add(tc))
+					{
+						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						delete tc;
+						cout<<endl;
+					}
+				}
+				else delete tc;
+			}
+
+
+		}
+		fichier.close();
+	}
+	else
+		cerr << "Impossible d'ouvrir le fichier : "+fichierSauvegarde << endl;
+} //----- Fin de GetSauvegardeDepartArrivee
 
 void Catalogue::Affiche () const
 // Algorithme : aucun

@@ -67,6 +67,7 @@ void application()
 		cout<<"6) changement du fichier de sauvegarde"<<endl;
 		cout<<"7) chargement entière de la sauvegarde"<<endl;
 		cout<<"8) chargement partielle de la sauvegarde selon le type"<<endl;
+		cout<<"9) chargement partielle de la sauvegarde selon depart/arrivee"<<endl;
 		cout<<"11) enregistrement entière du catalogue dans la sauvegarde"<<endl;
 		cout<<endl;
 		read_choice(saisieMenu,0,11);
@@ -284,6 +285,21 @@ void application()
 				catalogue.GetSauvegardeTypeTrajet(continuer);
 				break;
 			}
+
+			// CHARGEMENT PARTIEL DE LA SAUVEGARDE SELON DEPART / ARRIVEE
+			case 9:
+			{
+				string depart;
+				cout<<"Saissisez une ville de départ ou null";
+				cin>>depart;
+				string arrivee;
+				cout<<"Saissisez une ville d'arrivée ou null";
+				cin>>arrivee;
+				catalogue.GetSauvegardeDepartArrivee(depart,arrivee);
+				break;
+				
+			}
+	
 
 			// CHARGEMENT ENTIERE DE LA SAUVEGARDE
 			case 11:
