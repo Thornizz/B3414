@@ -50,7 +50,7 @@ public:
 	// Mode d'emploi : ajoute tous les trajets sauvegardés
 	// Contrat : aucun
 
-	void GetSauvegardeTypeTrajet(bool type) const;
+	void GetSauvegardeTypeTrajet(bool simple) const;
 	// Mode d'emploi : ajoute les trajets simples (type=true) ou composés
 	//      (type=false) sauvegardés
 	// Contrat : aucun
@@ -67,6 +67,12 @@ public:
 	void Save() const;
 	// Mode d'emploi : ajoute tous les trajets au fichier de sauvegarde,
 	//     si le fichier fichierSauvegarde n'existe pas il est créé
+	// Contrat : aucun
+
+	void SaveTypeTrajet(bool simple) const;
+	// Mode d'emploi : ajoute les trajets simples (type=true) ou composés
+	//     (type=false) au fichier de sauvegarde, si le fichier
+	//     fichierSauvegarde n'existe pas il est créé
 	// Contrat : aucun
 
 //-------------------------------------------- Constructeurs - destructeur

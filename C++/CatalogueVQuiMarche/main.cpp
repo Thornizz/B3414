@@ -69,8 +69,9 @@ void application()
 		cout<<"8) chargement partielle de la sauvegarde selon le type"<<endl;
 		cout<<"9) chargement partielle de la sauvegarde selon depart/arrivee"<<endl;
 		cout<<"11) enregistrement entière du catalogue dans la sauvegarde"<<endl;
-		cout<<endl;
-		read_choice(saisieMenu,0,11);
+		cout<<"12) enregistrement du catalogue dans la sauvegarde ";
+		cout<< "selon le type de trajet --"<<endl;
+		read_choice(saisieMenu,0,12);
 		cout<<endl;
 		switch(saisieMenu)
 		{
@@ -300,13 +301,26 @@ void application()
 				
 			}
 	
-
 			// CHARGEMENT ENTIERE DE LA SAUVEGARDE
 			case 11:
 			{
 				cout << "-- enregistrement entière du catalogue";
 				cout << "dans la sauvegarde --"<<endl;
 				catalogue.Save();
+				break;
+			}
+			
+			// CHARGEMENT DE LA SAUVEGARDE SELON LE TYPE
+			case 12:
+			{
+				cout << "-- enregistrement du catalogue";
+				cout << "dans la sauvegarde selon le type--"<<endl;
+				cout << "de trajet --"<<endl;
+				int simple;
+				cout << "O) Charger uniquement les trajets composés" <<endl;
+				cout << "1) Charger uniquement les trajets simples " <<endl;
+				read_choice(simple,0,1);
+				catalogue.SaveTypeTrajet(simple);
 				break;
 			}
 		}

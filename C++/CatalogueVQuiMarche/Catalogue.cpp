@@ -42,7 +42,6 @@ void Catalogue::Save() const
 	fs.open(fichierSauvegarde, fstream::out | fstream::app);
 	if(fs.is_open())
 	{
-		fs << "Bonjour"<<endl;
 		ElementListe* cur = liste->first;
 		while(cur != nullptr)
 		{
@@ -57,6 +56,35 @@ void Catalogue::Save() const
 		cerr << endl;
 	}
 } //----- Fin de Save
+
+void Catalogue::SaveTypeTrajet(bool simple) const
+// Algorithme : aucun
+{
+	if(fichierSauvegarde.empty())
+	{
+		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
+		return;
+	}
+	
+	fstream fs;
+	fs.open(fichierSauvegarde, fstream::out | fstream::app);
+	if(fs.is_open())
+	{
+		ElementListe* cur = liste->first;
+		while(cur != nullptr)
+		{
+			if( (cur->trajet->GetMoyenTransport() == nullptr) != simple)
+				cur->trajet->Save(fs);
+			cur=cur->suivant;
+		}
+		fs.close();
+	}
+	else
+	{
+		cerr << "Erreur lors de l'ouverture du fichier de sauvegarde";
+		cerr << endl;
+	}
+} //----- Fin de SaveTypeTrajet
 
 void Catalogue::GetSauvegarde() const
 // Algorithme : aucun
@@ -182,7 +210,7 @@ void Catalogue::GetSauvegarde() const
 		cerr << "Impossible d'ouvrir le fichier : "+fichierSauvegarde << endl;
 } //----- Fin de GetSauvegarde
 
-void Catalogue::GetSauvegardeTypeTrajet(bool type) const
+void Catalogue::GetSauvegardeTypeTrajet(bool simple) const
 // Algorithme : aucun
 {
 	if(fichierSauvegarde.empty())
@@ -198,7 +226,7 @@ void Catalogue::GetSauvegardeTypeTrajet(bool type) const
 		{
 			if(!ligne.compare("TS"))
 			{
-				if(type)
+				if(simple)
 				{
 					getline(fichier, ligne);
 					char* depart = new char[NB_MAX_CHAR];
@@ -233,7 +261,7 @@ void Catalogue::GetSauvegardeTypeTrajet(bool type) const
 
 			else if(!ligne.compare("TCD"))
 			{
-				if(!type)
+				if(!simple)
 				{
 					//trajet 1
 					getline(fichier, ligne);
