@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
@@ -48,10 +49,13 @@ const char* TrajetSimple::GetMoyenTransport() const
 	return moyenTransport;
 } //----- Fin de GetMoyenTransport
     
-void TrajetSimple::Save(const ofstream& ofs) const
+void TrajetSimple::Save(fstream& fs) const
 // Algorithme : aucun
 {
-	cout << "METHODE TrajetSimple::Save A FAIRE"<<endl;
+	fs << "TS" << endl;
+	fs << depart << endl;
+	fs << arrivee << endl;
+	fs << moyenTransport << endl;
 } //----- Fin de Save
 
 //-------------------------------------------- Constructeurs - destructeur

@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "TrajetCompose.h"
@@ -21,19 +22,19 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
     
-void TrajetCompose::Save(const ofstream& ofs) const
+void TrajetCompose::Save(fstream& fs) const
 // Algorithme : aucun
 {
-	
-	cout << "METHODE TrajetCompose::Save A FAIRE"<<endl;
-	// ofs << "TCD" <<endl;
+	fs << "TCD" << endl;
+	fs << GetDepart() << endl;
+	fs << GetArrivee() << endl;
 	ElementListe* cur = liste->first;
 	while(cur!=nullptr)
 	{
-		cur->trajet->Save(ofs);
+		cur->trajet->Save(fs);
 		cur = cur->suivant;
 	}
- 	//ofs << "TCF" <<endl;
+ 	fs << "TCF" <<endl;
 } //----- Fin de Save
 
  void TrajetCompose::Affiche() const

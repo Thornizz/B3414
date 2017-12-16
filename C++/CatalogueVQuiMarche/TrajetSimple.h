@@ -45,7 +45,7 @@ public:
     // Mode d'emploi : renvoi le moyen de transport
     // Contrat : aucun
     
-	void Save(const ofstream& ofs) const;
+	void Save(fstream& fs) const;
     // Mode d'emploi : ecriture du trajet dans un fichier de sauvegarde
     //     via l'ofstream passé en paramêtre
     // Contrat : aucun

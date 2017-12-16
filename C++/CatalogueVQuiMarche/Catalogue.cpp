@@ -38,17 +38,18 @@ void Catalogue::Save() const
 		return;
 	}
 	
-	ofstream ofs;
-	ofs.open(fichierSauvegarde, ofstream::out | ofstream::app);
-	if(ofs.is_open())
+	fstream fs;
+	fs.open(fichierSauvegarde, fstream::out | fstream::app);
+	if(fs.is_open())
 	{
+		fs << "Bonjour"<<endl;
 		ElementListe* cur = liste->first;
 		while(cur != nullptr)
 		{
-			cur->trajet->Save(ofs);
+			cur->trajet->Save(fs);
 			cur=cur->suivant;
 		}
-		ofs.close();
+		fs.close();
 	}
 	else
 	{
