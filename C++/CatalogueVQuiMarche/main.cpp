@@ -21,7 +21,7 @@ void majuscule(char *chaine);
 //     spéciaux, accents, cédilles)
 // Contrat : chaine est non nul
 
-int main (){
+int main (){	
 	application();
 	return 0;
 
@@ -54,6 +54,7 @@ void application()
 		cout<<"6) changement du fichier de sauvegarde"<<endl;
 		cout<<"7) chargement entière de la sauvegarde"<<endl;
 		cout<<"8) chargement partielle de la sauvegarde selon le type"<<endl;
+		cout<<"11) enregistrement entière du catalogue dans la sauvegarde"<<endl;
 		cout<<endl;
 		cout <<"Saisissez votre choix : ";
 		cin>>saisieMenu;
@@ -265,12 +266,22 @@ void application()
 			case 8:
 			{
 				bool continuer;
-				cout<<"-- chargement partielle de la sauvegarde selon le type --"<<endl;
+				cout <<"-- chargement partielle de la sauvegarde selon";
+				cout << "le type --"<<endl;
 				cout << "O) Charger uniquement les trajets composés" <<endl;
 				cout << "1) Charger uniquement les trajets simples " <<endl;
 				cout << "Votre choix : ";
 				cin>>continuer;
 				catalogue.GetSauvegardeTypeTrajet(continuer);
+				break;
+			}
+
+			// CHARGEMENT ENTIERE DE LA SAUVEGARDE
+			case 11:
+			{
+				cout << "-- enregistrement entière du catalogue";
+				cout << "dans la sauvegarde --"<<endl;
+				catalogue.Save();
 				break;
 			}
 		}

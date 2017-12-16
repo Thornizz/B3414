@@ -47,6 +47,11 @@ public:
 	const char* GetArrivee() const;
 	// Mode d'emploi : retourne l'arrivée
 	// Contrat : aucun
+    
+	void Save(const ofstream& ofs) const;
+    // Mode d'emploi : ecriture du trajet dans un fichier de sauvegarde
+    //     via l'ofstream passé en paramêtre
+    // Contrat : aucun
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetCompose (const Trajet* t1, const Trajet* t2);

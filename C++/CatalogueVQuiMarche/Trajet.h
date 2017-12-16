@@ -47,6 +47,11 @@ public:
 	virtual const char* GetMoyenTransport() const;
     // Mode d'emploi : renvoi le moyen de transport s'il existe sinon nul
     // Contrat : aucun
+    
+	virtual void Save(const ofstream& ofs) const = 0;
+    // Mode d'emploi : ecriture du trajet dans un fichier de sauvegarde
+    //     via l'ofstream passé en paramêtre
+    // Contrat : aucun
 
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( );

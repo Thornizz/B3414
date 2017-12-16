@@ -44,6 +44,11 @@ public:
 	const char* GetMoyenTransport() const;
     // Mode d'emploi : renvoi le moyen de transport
     // Contrat : aucun
+    
+	void Save(const ofstream& ofs) const;
+    // Mode d'emploi : ecriture du trajet dans un fichier de sauvegarde
+    //     via l'ofstream passé en paramêtre
+    // Contrat : aucun
 
 //-------------------------------------------- Constructeurs - destructeur
 	TrajetSimple (const char* d, const char* a, const char* mT);

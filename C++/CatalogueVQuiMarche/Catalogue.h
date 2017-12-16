@@ -36,29 +36,38 @@ public:
 
 	unsigned int RechercheParcours(const char* depart,
 											const char* arrivee ) const;
-    // Mode d'emploi : recherche de trajets qui vont de depart à arrivee 	 //      et renvoie le nombre de solution
+    // Mode d'emploi : recherche de trajets qui vont de depart à arrivee 	 
+    //      et renvoie le nombre de solution
     // Contrat : depart et arrivee sont non nuls
 
 	void RechercheParcoursAvancee(const char* depart,
 											const char* arrivee ) const;
-    // Mode d'emploi : recherche les compositions de trajets qui vont de 	 //     depart à arrivee et affiche toutes les solutions
+    // Mode d'emploi : recherche les compositions de trajets qui vont de 	 
+    //     depart à arrivee et affiche toutes les solutions
     // Contrat : depart et arrivee sont non nuls
 
-		void GetSauvegarde() const;
-		// Mode d'emploi : ajoute tous les trajets sauvegardés
-			// Contrat : aucun
+	void GetSauvegarde() const;
+	// Mode d'emploi : ajoute tous les trajets sauvegardés
+	// Contrat : aucun
 
-		void GetSauvegardeTypeTrajet(bool type) const;
-		// Mode d'emploi : ajoute les trajets simples (type=true) ou composés (type=false) sauvegardés
-			// Contrat : aucun
+	void GetSauvegardeTypeTrajet(bool type) const;
+	// Mode d'emploi : ajoute les trajets simples (type=true) ou composés
+	//      (type=false) sauvegardés
+	// Contrat : aucun
 
-		void GetSauvegardeDepartArrivee(string depart, string arrivee) const;
-		// Mode d'emploi : ajoute les trajets sauvegardés selon la ville de depart et/ou d'arrivee
-			// Contrat : aucun
+	void GetSauvegardeDepartArrivee(string depart, string arrivee) const;
+	// Mode d'emploi : ajoute les trajets sauvegardés selon la ville de
+	//     depart et/ou d'arrivee
+	// Contrat : aucun
 
-		void SetFichierSauvegarde(string fichier);
-		// Mode d'emploi : modifie le fichier de sauvegarde
-			// Contrat : aucun
+	void SetFichierSauvegarde(string fichier);
+	// Mode d'emploi : modifie le fichier de sauvegarde
+	// Contrat : aucun
+	
+	void Save() const;
+	// Mode d'emploi : ajoute tous les trajets au fichier de sauvegarde,
+	//     si le fichier fichierSauvegarde n'existe pas il est créé
+	// Contrat : aucun
 
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( );
@@ -78,11 +87,12 @@ protected:
 //------------------------------------------------------------------ PRIVE
 
 private:
-	//------------------------------------------------------- Attributs privés
+//------------------------------------------------------- Attributs privés
 		const unsigned int NB_MAX_CHAR = 100;
 //------------------------------------------------------- Methodes privées
 	void rechercheRecursive (const char* depart, const char* arrivee,
-					 	unsigned int* tab,const unsigned int lengthTab, 						const unsigned int position) const;
+					 	unsigned int* tab,const unsigned int lengthTab,
+			 						const unsigned int position) const;
     // Mode d'emploi : sous methode de RechercheParcoursAvancee qui
 	//     recherche les compositions de trajets qui vont de depart à
 	//     arrivee et affiche toutes les solutions. Tab est un tableau de

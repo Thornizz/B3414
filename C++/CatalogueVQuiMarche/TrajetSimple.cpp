@@ -47,6 +47,12 @@ const char* TrajetSimple::GetMoyenTransport() const
 {
 	return moyenTransport;
 } //----- Fin de GetMoyenTransport
+    
+void TrajetSimple::Save(const ofstream& ofs) const
+// Algorithme : aucun
+{
+	cout << "METHODE TrajetSimple::Save A FAIRE"<<endl;
+} //----- Fin de Save
 
 //-------------------------------------------- Constructeurs - destructeur
 TrajetSimple::TrajetSimple (const char* d, const char* a, const char* mT)

@@ -29,17 +29,42 @@ void Catalogue::SetFichierSauvegarde(string fichier)
 	fichierSauvegarde = fichier;
 } //----- Fin de SetFichierSauvegarde
 
-
-void Catalogue::GetSauvegarde() const
+void Catalogue::Save() const
 // Algorithme : aucun
 {
-/*
-	if(fichierSauvegarde==NULL)
+	if(fichierSauvegarde.empty())
 	{
 		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
 		return;
 	}
-*/
+	
+	ofstream ofs;
+	ofs.open(fichierSauvegarde, ofstream::out | ofstream::app);
+	if(ofs.is_open())
+	{
+		ElementListe* cur = liste->first;
+		while(cur != nullptr)
+		{
+			cur->trajet->Save(ofs);
+			cur=cur->suivant;
+		}
+		ofs.close();
+	}
+	else
+	{
+		cerr << "Erreur lors de l'ouverture du fichier de sauvegarde";
+		cerr << endl;
+	}
+} //----- Fin de Save
+
+void Catalogue::GetSauvegarde() const
+// Algorithme : aucun
+{
+	if(fichierSauvegarde.empty())
+	{
+		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
+		return;
+	}
 	ifstream fichier(fichierSauvegarde, ios::in);
 	if(fichier)
 	{
@@ -159,13 +184,11 @@ void Catalogue::GetSauvegarde() const
 void Catalogue::GetSauvegardeTypeTrajet(bool type) const
 // Algorithme : aucun
 {
-/*
-	if(fichierSauvegarde==NULL)
+	if(fichierSauvegarde.empty())
 	{
 		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
 		return;
 	}
-*/
 	ifstream fichier(fichierSauvegarde, ios::in);
 	if(fichier)
 	{
@@ -419,7 +442,11 @@ Catalogue::Catalogue ()
     cout << "Appel au constructeur de <Catalogue>" << endl;
 #endif
 	liste = new Liste();
-	fichierSauvegarde = "demo.txt";
+	fichierSauvegarde = "";
+	
+#ifdef TEST
+	fichierSauvegarde = "testFlo.txt";
+#endif
 } //----- Fin de Catalogue
 
 Catalogue::~Catalogue ( )

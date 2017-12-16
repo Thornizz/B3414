@@ -19,6 +19,23 @@ using namespace std;
 
 //----------------------------------------------------------------- PUBLIC
 //----------------------------------------------------- Méthodes publiques
+
+    
+void TrajetCompose::Save(const ofstream& ofs) const
+// Algorithme : aucun
+{
+	
+	cout << "METHODE TrajetCompose::Save A FAIRE"<<endl;
+	// ofs << "TCD" <<endl;
+	ElementListe* cur = liste->first;
+	while(cur!=nullptr)
+	{
+		cur->trajet->Save(ofs);
+		cur = cur->suivant;
+	}
+ 	//ofs << "TCF" <<endl;
+} //----- Fin de Save
+
  void TrajetCompose::Affiche() const
 // Algorithme : aucun
 {
