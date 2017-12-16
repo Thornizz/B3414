@@ -75,6 +75,12 @@ public:
 	//     fichierSauvegarde n'existe pas il est créé
 	// Contrat : aucun
 
+	void SaveDepartArrivee(string depart, string arrivee) const;
+	// Mode d'emploi : ajoute les trajets au fichier de sauvegarde selon
+	//     la ville de depart et/ou d'arrivee, si le fichier
+	//     fichierSauvegarde n'existe pas il est créé
+	// Contrat : aucun
+
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( );
     // Mode d'emploi : aucun

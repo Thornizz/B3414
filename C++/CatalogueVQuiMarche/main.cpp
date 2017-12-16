@@ -70,8 +70,10 @@ void application()
 		cout<<"9) chargement partielle de la sauvegarde selon depart/arrivee"<<endl;
 		cout<<"11) enregistrement entière du catalogue dans la sauvegarde"<<endl;
 		cout<<"12) enregistrement du catalogue dans la sauvegarde ";
-		cout<< "selon le type de trajet --"<<endl;
-		read_choice(saisieMenu,0,12);
+		cout<< "selon le type de trajet"<<endl;
+		cout<<"13) enregistrement du catalogue dans la sauvegarde";
+		cout<<" selon depart/arrivee"<<endl;
+		read_choice(saisieMenu,0,13);
 		cout<<endl;
 		switch(saisieMenu)
 		{
@@ -291,10 +293,10 @@ void application()
 			case 9:
 			{
 				string depart;
-				cout<<"Saissisez une ville de départ ou null";
+				cout<<"Saissisez une ville de départ (ou tapez sur entrer)";
 				cin>>depart;
 				string arrivee;
-				cout<<"Saissisez une ville d'arrivée ou null";
+				cout<<"Saissisez une ville d'arrivée (ou tapez sur entrer)";
 				cin>>arrivee;
 				catalogue.GetSauvegardeDepartArrivee(depart,arrivee);
 				break;
@@ -323,6 +325,30 @@ void application()
 				catalogue.SaveTypeTrajet(simple);
 				break;
 			}
+			
+
+			// CHARGEMENT PARTIEL DE LA SAUVEGARDE SELON DEPART / ARRIVEE
+			case 13:
+			{
+				cout<<"-- enregistrement du catalogue dans la sauvegarde";
+				cout<<" selon depart/arrivee --"<<endl;
+				
+				string depart;
+				cout<<"Saissisez une ville de départ (ou -)";
+				cin>>depart;
+				if(!depart.compare("-"))
+					depart = "";
+					
+				string arrivee;
+				cout<<"Saissisez une ville d'arrivée (ou -)";
+				cin>>arrivee;
+				if(!arrivee.compare("-"))
+					arrivee = "";
+					
+				catalogue.SaveDepartArrivee(depart,arrivee);
+				break;
+			}
+		
 		}
 	cout<<endl;
 	cout<<"----------------------------------------------------------";

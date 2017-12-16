@@ -7,7 +7,7 @@ EDLFLAGS =
 
 # compilation
 COMP = g++ -c
-COMPFLAGS = -ansi -g -pedantic -Wall -std=c++11 -DTEST #-DMAP
+COMPFLAGS = -ansi -g -pedantic -Wall -std=c++11 #-DTEST #-DMAP
 
 # fichiers
 REALISATIONS = $(wildcard *.cpp)

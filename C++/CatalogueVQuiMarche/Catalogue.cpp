@@ -86,6 +86,40 @@ void Catalogue::SaveTypeTrajet(bool simple) const
 	}
 } //----- Fin de SaveTypeTrajet
 
+void Catalogue::SaveDepartArrivee(string depart, string arrivee) const
+// Algorithme : aucun
+{
+	if(fichierSauvegarde.empty())
+	{
+		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
+		return;
+	}
+	
+	fstream fs;
+	fs.open(fichierSauvegarde, fstream::out | fstream::app);
+	if(fs.is_open())
+	{
+		ElementListe* cur = liste->first;
+		while(cur != nullptr)
+		{
+			if( (depart.empty()
+							|| !depart.compare(cur->trajet->GetDepart()))
+				&& (arrivee.empty()
+							|| !arrivee.compare(cur->trajet->GetArrivee())))
+			{
+				cur->trajet->Save(fs);
+			}
+			cur=cur->suivant;
+		}
+		fs.close();
+	}
+	else
+	{
+		cerr << "Erreur lors de l'ouverture du fichier de sauvegarde";
+		cerr << endl;
+	}
+} //----- Fin de SaveDepartArrivee
+
 void Catalogue::GetSauvegarde() const
 // Algorithme : aucun
 {
@@ -531,8 +565,8 @@ unsigned int Catalogue::RechercheParcours(const char* depart,
 	//parcours des trajets
 	while(cur != nullptr)
 	{
-		//test sur le départ du trajet en cours
 		bool ok = true;
+		//test sur le départ du trajet en cours
 		const char* departCur = cur->trajet->GetDepart();
 		if(strlen(departCur) != strlen(depart))
 			ok = false ;
