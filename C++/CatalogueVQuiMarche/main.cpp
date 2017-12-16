@@ -11,6 +11,7 @@ using namespace std;
 #include "TrajetCompose.h"
 #include "Catalogue.h"
 #include <cstring>
+#include <limits> 
 
 void application();
 // Mode d'emploi : lancement de l'application
@@ -21,8 +22,14 @@ void majuscule(char *chaine);
 //     spéciaux, accents, cédilles)
 // Contrat : chaine est non nul
 
+
+bool read_choice( int & N, int min, int max );
+// Mode d'emploi : permet de récupérer un int entre min et max
+// Contrat : aucun
+
 int main (){	
 	application();
+
 	return 0;
 
 }
@@ -41,7 +48,13 @@ void application()
 	cout<<endl<<endl;
 
 	Catalogue catalogue;
-	unsigned int saisieMenu;
+
+  
+
+	 int saisieMenu;
+
+	
+
 	do
 	{
 		cout<<"Menu :"<<endl;
@@ -56,8 +69,7 @@ void application()
 		cout<<"8) chargement partielle de la sauvegarde selon le type"<<endl;
 		cout<<"11) enregistrement entière du catalogue dans la sauvegarde"<<endl;
 		cout<<endl;
-		cout <<"Saisissez votre choix : ";
-		cin>>saisieMenu;
+		read_choice(saisieMenu,0,11);
 		cout<<endl;
 		switch(saisieMenu)
 		{
@@ -119,15 +131,14 @@ void application()
 				bool creation = true;
 
 				//saisie et ajout d'autant d'étape que souhaité
-				bool continuer;
+				int continuer;
 				cout << "--" <<endl;
 				cout << "O) Saisir la ville d'arrivee" <<endl;
 				cout << "1) Saisir une ville étape" <<endl;
-				cout << "Votre choix : ";
-				cin >> continuer;
+				read_choice(continuer,0,1);
 				cout << "--" <<endl;
 
-				while(continuer)
+				while(continuer==1)
 				{
 					//saisie de l'étape
 					cout <<"Saisissez une ville étape : ";
@@ -159,8 +170,7 @@ void application()
 					cout << "--" <<endl;
 					cout << "O) Saisir la ville d'arrivee" <<endl;
 					cout << "1) Saisir une ville étape" <<endl;
-					cout << "Votre choix : ";
-					cin >> continuer;
+					read_choice(continuer,0,1);
 					cout << "--" <<endl;
 				}
 
@@ -254,7 +264,7 @@ void application()
 				break;
 			}
 
-			// CHARGEMENT ENTIERE DE LA SAUVEGARDE
+			// CHARGEMENT ENTIER DE LA SAUVEGARDE
 			case 7:
 			{
 				cout<<"-- chargement entière de la sauvegarde --"<<endl;
@@ -262,16 +272,15 @@ void application()
 				break;
 			}
 
-			// CHARGEMENT PARTIELLE DE LA SAUVEGARDE SELON LE TYPE
+			// CHARGEMENT PARTIEL DE LA SAUVEGARDE SELON LE TYPE
 			case 8:
 			{
-				bool continuer;
+				int continuer;
 				cout <<"-- chargement partielle de la sauvegarde selon";
 				cout << "le type --"<<endl;
 				cout << "O) Charger uniquement les trajets composés" <<endl;
 				cout << "1) Charger uniquement les trajets simples " <<endl;
-				cout << "Votre choix : ";
-				cin>>continuer;
+				read_choice(continuer,0,1);
 				catalogue.GetSauvegardeTypeTrajet(continuer);
 				break;
 			}
@@ -308,3 +317,30 @@ void majuscule(char *chaine)
 		i++;
 	}
 } //----- Fin de majuscule
+
+bool read_choice(int & N, int min, int max ) 
+// Algorithme : aucun
+{ 
+    cout << "Entrez un chiffre entre "<< min << " et " << max ; 
+	cout << endl;
+    while ( ! ( cin >> N ) || N < min || N > max ) 
+    {  
+        if ( cin.eof() ) 
+        {   
+            return false;  
+        } 
+        else if ( cin.fail() ) 
+        {  
+            cout << "Saisie incorrecte, recommencez : ";
+			cout << endl;
+            cin.clear();  
+            cin.ignore( numeric_limits<streamsize>::max(), '\n' ); 
+        } 
+        else 
+        { 
+            cout << "Le chiffre n'est pas entre " << min << " et " << max << " recommencez : ";
+			cout << endl; 
+        } 
+    } 
+    return true; 
+} //----- Fin de read_choice
