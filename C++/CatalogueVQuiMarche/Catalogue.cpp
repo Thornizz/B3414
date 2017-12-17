@@ -120,6 +120,52 @@ void Catalogue::SaveDepartArrivee(string depart, string arrivee) const
 	}
 } //----- Fin de SaveDepartArrivee
 
+
+void Catalogue::SaveInterval(unsigned int start, unsigned int end) const
+// Algorithme : aucun
+{
+	if(fichierSauvegarde.empty())
+	{
+		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
+		return;
+	}
+	
+	fstream fs;
+	fs.open(fichierSauvegarde, fstream::out | fstream::app);
+	if(fs.is_open())
+	{
+		ElementListe* cur = liste->first;
+		for(unsigned int i = 1 ; i < start ; i++)
+		{
+			cur=cur->suivant;
+		}
+		for(unsigned int i = start ; i <= end ; i++)
+		{
+			cur->trajet->Save(fs);
+			cur=cur->suivant;
+		}
+		fs.close();
+	}
+	else
+	{
+		cerr << "Erreur lors de l'ouverture du fichier de sauvegarde";
+		cerr << endl;
+	}
+} //----- Fin de SaveInterval
+
+unsigned int Catalogue::GetNbTrajet() const
+// Algorithme : aucun
+{
+	unsigned int nbTrajet = 0;
+	ElementListe* cur = liste->first;
+	while(cur != nullptr)
+	{
+		++nbTrajet;
+		cur = cur->suivant;
+	}
+	return nbTrajet;
+} //----- Fin de GetNbTrajet
+
 void Catalogue::GetSauvegarde() const
 // Algorithme : aucun
 {
@@ -609,6 +655,25 @@ void Catalogue::RechercheParcoursAvancee(const char* depart,
 												const char* arrivee) const
 // Algorithme : aucun
 {
+	//gestion du cas particulier depart == arrivee
+	bool deparrivee = true;
+	if(strlen(arrivee) != strlen(depart))
+		deparrivee = false ;
+	else
+	{
+		for(unsigned int i=0 ; i<strlen(arrivee) ; i++)
+		{
+			if(arrivee[i] != depart[i])
+				deparrivee = false;
+		}
+	}
+	
+	if(deparrivee)
+	{
+		RechercheParcours(depart, arrivee);
+		return;
+	}
+		
 	// initialisation
 	unsigned int nbTrajet = 0;
 	ElementListe* cur = liste->first;

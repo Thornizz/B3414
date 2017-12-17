@@ -81,6 +81,17 @@ public:
 	//     fichierSauvegarde n'existe pas il est créé
 	// Contrat : aucun
 
+	void SaveInterval(unsigned int start, unsigned int end) const;
+	// Mode d'emploi : ajoute les trajets au fichier de sauvegarde qui
+	//     se situent dans l'interval [start,end]. Si fichierSauvegarde
+	//     n'existe pas il est créé
+	// Contrat : start est inférieur à end
+
+	unsigned int GetNbTrajet() const;
+	// Mode d'emploi : renvoit le nombre de trajets présents dans le
+	//     catalogue
+	// Contrat : aucun
+
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( );
     // Mode d'emploi : aucun

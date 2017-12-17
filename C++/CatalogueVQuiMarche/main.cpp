@@ -17,15 +17,15 @@ void application();
 // Mode d'emploi : lancement de l'application
 // Contrat : aucun
 
-void majuscule(char *chaine);
-// Mode d'emploi : change les minuscules en majuscules (hors caractères
+void Majuscule(char *chaine);
+// Mode d'emploi : change les minuscules en Majuscules (hors caractères
 //     spéciaux, accents, cédilles)
 // Contrat : chaine est non nul
 
 
-bool read_choice( int & N, int min, int max );
+bool ReadChoice( unsigned int & N, unsigned int min, unsigned int max );
 // Mode d'emploi : permet de récupérer un int entre min et max
-// Contrat : aucun
+// Contrat : min est inférieur à max
 
 int main (){	
 	application();
@@ -51,7 +51,7 @@ void application()
 
   
 
-	 int saisieMenu;
+	 unsigned int saisieMenu;
 
 	
 
@@ -73,7 +73,9 @@ void application()
 		cout<< "selon le type de trajet"<<endl;
 		cout<<"13) enregistrement du catalogue dans la sauvegarde";
 		cout<<" selon depart/arrivee"<<endl;
-		read_choice(saisieMenu,0,13);
+		cout<<"14) enregistrement du catalogue dans la sauvegarde";
+		cout<<" selon un interval"<<endl;
+		ReadChoice(saisieMenu,0,14);
 		cout<<endl;
 		switch(saisieMenu)
 		{
@@ -85,15 +87,15 @@ void application()
 				cout <<"Saisissez la ville de départ : ";
 				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
-				majuscule(depart);
+				Majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
 				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
-				majuscule(arrivee);
+				Majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
 				char* moyenTransport = new char[NB_MAX_CHAR1];
 				cin >> moyenTransport;
-				majuscule(moyenTransport);
+				Majuscule(moyenTransport);
 
 				Trajet * t = new TrajetSimple(
 										depart,arrivee,moyenTransport);
@@ -115,15 +117,15 @@ void application()
 				cout <<"Saisissez la ville de départ : ";
 				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
-				majuscule(depart);
+				Majuscule(depart);
 				cout <<"Saisissez une ville étape : ";
 				char* etape = new char[NB_MAX_CHAR1];
 				cin >> etape;
-				majuscule(etape);
+				Majuscule(etape);
 				cout <<"Saisissez le moyen de transport : ";
 				char* moyenTransport = new char[NB_MAX_CHAR1];
 				cin >> moyenTransport;
-				majuscule(moyenTransport);
+				Majuscule(moyenTransport);
 
 				Trajet * td = new TrajetSimple(
 											depart,etape,moyenTransport);
@@ -135,11 +137,11 @@ void application()
 				bool creation = true;
 
 				//saisie et ajout d'autant d'étape que souhaité
-				int continuer;
+				unsigned int continuer;
 				cout << "--" <<endl;
 				cout << "O) Saisir la ville d'arrivee" <<endl;
 				cout << "1) Saisir une ville étape" <<endl;
-				read_choice(continuer,0,1);
+				ReadChoice(continuer,0,1);
 				cout << "--" <<endl;
 
 				while(continuer==1)
@@ -148,11 +150,11 @@ void application()
 					cout <<"Saisissez une ville étape : ";
 					etape = new char[NB_MAX_CHAR1];
 					cin >> etape;
-					majuscule(etape);
+					Majuscule(etape);
 					cout <<"Saisissez le moyen de transport : ";
 					moyenTransport = new char[NB_MAX_CHAR1];
 					cin >> moyenTransport;
-					majuscule(moyenTransport);
+					Majuscule(moyenTransport);
 
 					Trajet * t = new TrajetSimple(
 										etapeCopie,etape,moyenTransport);
@@ -174,7 +176,7 @@ void application()
 					cout << "--" <<endl;
 					cout << "O) Saisir la ville d'arrivee" <<endl;
 					cout << "1) Saisir une ville étape" <<endl;
-					read_choice(continuer,0,1);
+					ReadChoice(continuer,0,1);
 					cout << "--" <<endl;
 				}
 
@@ -182,11 +184,11 @@ void application()
 				cout <<"Saisissez la ville d'arrivée : ";
 				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
-				majuscule(arrivee);
+				Majuscule(arrivee);
 				cout <<"Saisissez le moyen de transport : ";
 				moyenTransport = new char[NB_MAX_CHAR1];
 				cin >> moyenTransport;
-				majuscule(moyenTransport);
+				Majuscule(moyenTransport);
 
 				Trajet * ta = new TrajetSimple(
 									etapeCopie,arrivee,moyenTransport);
@@ -222,11 +224,11 @@ void application()
 				cout <<"Saisissez la ville de départ : ";
 				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
-				majuscule(depart);
+				Majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
 				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
-				majuscule(arrivee);
+				Majuscule(arrivee);
 
 				catalogue.RechercheParcours(depart,arrivee);
 
@@ -243,11 +245,11 @@ void application()
 				cout <<"Saisissez la ville de départ : ";
 				char* depart = new char[NB_MAX_CHAR1];
 				cin >> depart;
-				majuscule(depart);
+				Majuscule(depart);
 				cout <<"Saisissez la ville d'arrivée : ";
 				char* arrivee = new char[NB_MAX_CHAR1];
 				cin >> arrivee;
-				majuscule(arrivee);
+				Majuscule(arrivee);
 
 				catalogue.RechercheParcoursAvancee(depart,arrivee);
 
@@ -279,12 +281,12 @@ void application()
 			// CHARGEMENT PARTIEL DE LA SAUVEGARDE SELON LE TYPE
 			case 8:
 			{
-				int continuer;
+				unsigned int continuer;
 				cout <<"-- chargement partielle de la sauvegarde selon";
 				cout << "le type --"<<endl;
 				cout << "O) Charger uniquement les trajets composés" <<endl;
 				cout << "1) Charger uniquement les trajets simples " <<endl;
-				read_choice(continuer,0,1);
+				ReadChoice(continuer,0,1);
 				catalogue.GetSauvegardeTypeTrajet(continuer);
 				break;
 			}
@@ -308,6 +310,14 @@ void application()
 			{
 				cout << "-- enregistrement entière du catalogue";
 				cout << "dans la sauvegarde --"<<endl;
+				
+			
+				if(catalogue.GetNbTrajet() == 0)
+				{
+					cout << "Le catalogue est vide, il n'y rien à sauvegarder." << endl;
+					break;
+				}
+				
 				catalogue.Save();
 				break;
 			}
@@ -318,10 +328,17 @@ void application()
 				cout << "-- enregistrement du catalogue";
 				cout << "dans la sauvegarde selon le type--"<<endl;
 				cout << "de trajet --"<<endl;
-				int simple;
+				
+				if(catalogue.GetNbTrajet() == 0)
+				{
+					cout << "Le catalogue est vide, il n'y rien à sauvegarder." << endl;
+					break;
+				}
+				
+				unsigned int simple;
 				cout << "O) Charger uniquement les trajets composés" <<endl;
 				cout << "1) Charger uniquement les trajets simples " <<endl;
-				read_choice(simple,0,1);
+				ReadChoice(simple,0,1);
 				catalogue.SaveTypeTrajet(simple);
 				break;
 			}
@@ -333,19 +350,59 @@ void application()
 				cout<<"-- enregistrement du catalogue dans la sauvegarde";
 				cout<<" selon depart/arrivee --"<<endl;
 				
-				string depart;
-				cout<<"Saissisez une ville de départ (ou -)";
-				cin>>depart;
-				if(!depart.compare("-"))
-					depart = "";
-					
-				string arrivee;
-				cout<<"Saissisez une ville d'arrivée (ou -)";
-				cin>>arrivee;
-				if(!arrivee.compare("-"))
-					arrivee = "";
-					
+				if(catalogue.GetNbTrajet() == 0)
+				{
+					cout << "Le catalogue est vide, il n'y rien à sauvegarder." << endl;
+					break;
+				}
+
+				unsigned int choix;
+				cout << "O) Selon le départ uniquement" <<endl;
+				cout << "1) Selon l'arrivée uniquement" <<endl;
+				cout << "2) Selon le départ et l'arrivée uniquement" <<endl;
+				ReadChoice(choix,0,2);
+
+				string depart ="";
+				string arrivee="";
+				
+				if(choix != 1)
+				{
+					cout<<"Saissisez une ville de départ : ";
+					cin >> depart;
+				}
+				
+				if(choix > 0)
+				{
+					cout<<"Saissisez une ville d'arrivée : ";
+					cin >> arrivee;
+				}
+				
 				catalogue.SaveDepartArrivee(depart,arrivee);
+				break;
+			}
+			
+			// CHARGEMENT PARTIEL DE LA SAUVEGARDE SELON INTERVAL
+			case 14:
+			{
+				cout<<"-- enregistrement du catalogue dans la sauvegarde";
+				cout<<" selon interval --"<<endl;
+
+				unsigned int max = catalogue.GetNbTrajet();
+				if(max == 0)
+				{
+					cout << "Le catalogue est vide, il n'y rien à sauvegarder." << endl;
+					break;
+				}
+				
+				unsigned int start;
+				unsigned int end;
+				
+				cout<<"Saissisez le début de l'intervalle : "<<endl;
+				ReadChoice(start,1,max);
+				cout<<"Saissisez la fin de l'intervalle : "<<endl;
+				ReadChoice(end,start,max);
+				
+				catalogue.SaveInterval(start,end);
 				break;
 			}
 		
@@ -362,7 +419,7 @@ void application()
 	cout<<"******************************"<<endl<<endl;
 } //----- Fin de application
 
-void majuscule(char *chaine)
+void Majuscule(char *chaine)
 // Algorithme : aucun
 {
 	unsigned int i = 0;
@@ -372,13 +429,12 @@ void majuscule(char *chaine)
 			chaine[i] = chaine[i] - 32;
 		i++;
 	}
-} //----- Fin de majuscule
+} //----- Fin de Majuscule
 
-bool read_choice(int & N, int min, int max ) 
+bool ReadChoice(unsigned int & N, unsigned int min, unsigned int max ) 
 // Algorithme : aucun
 { 
-    cout << "Entrez un chiffre entre "<< min << " et " << max ; 
-	cout << endl;
+    cout << "Entrez un chiffre entre "<< min << " et " << max <<" : ";
     while ( ! ( cin >> N ) || N < min || N > max ) 
     {  
         if ( cin.eof() ) 
@@ -388,15 +444,13 @@ bool read_choice(int & N, int min, int max )
         else if ( cin.fail() ) 
         {  
             cout << "Saisie incorrecte, recommencez : ";
-			cout << endl;
             cin.clear();  
             cin.ignore( numeric_limits<streamsize>::max(), '\n' ); 
         } 
         else 
         { 
             cout << "Le chiffre n'est pas entre " << min << " et " << max << " recommencez : ";
-			cout << endl; 
         } 
     } 
     return true; 
-} //----- Fin de read_choice
+} //----- Fin de ReadChoice
