@@ -65,16 +65,17 @@ void application()
 		cout<<"4) recherche de parcours"<<endl;
 		cout<<"5) recherche avancée de parcours"<<endl;
 		cout<<"6) changement du fichier de sauvegarde"<<endl;
-		cout<<"7) chargement entière de la sauvegarde"<<endl;
-		cout<<"8) chargement partielle de la sauvegarde selon le type"<<endl;
-		cout<<"9) chargement partielle de la sauvegarde selon depart/arrivee"<<endl;
-		cout<<"11) enregistrement entière du catalogue dans la sauvegarde"<<endl;
+		cout<<"7) chargement entier de la sauvegarde"<<endl;
+		cout<<"8) chargement partiel de la sauvegarde selon le type"<<endl;
+		cout<<"10) chargement partiel de la sauvegarde selon un intervalle"<<endl;
+		cout<<"9) chargement partiel de la sauvegarde selon depart/arrivee"<<endl;
+		cout<<"11) enregistrement entier du catalogue dans la sauvegarde"<<endl;
 		cout<<"12) enregistrement du catalogue dans la sauvegarde ";
-		cout<< "selon le type de trajet"<<endl;
+		cout<< " selon le type de trajet"<<endl;
 		cout<<"13) enregistrement du catalogue dans la sauvegarde";
 		cout<<" selon depart/arrivee"<<endl;
 		cout<<"14) enregistrement du catalogue dans la sauvegarde";
-		cout<<" selon un interval"<<endl;
+		cout<<" selon un intervalle"<<endl;
 		ReadChoice(saisieMenu,0,14);
 		cout<<endl;
 		switch(saisieMenu)
@@ -273,7 +274,7 @@ void application()
 			// CHARGEMENT ENTIER DE LA SAUVEGARDE
 			case 7:
 			{
-				cout<<"-- chargement entière de la sauvegarde --"<<endl;
+				cout<<"-- chargement entier de la sauvegarde --"<<endl;
 				catalogue.GetSauvegarde();
 				break;
 			}
@@ -282,8 +283,8 @@ void application()
 			case 8:
 			{
 				unsigned int continuer;
-				cout <<"-- chargement partielle de la sauvegarde selon";
-				cout << "le type --"<<endl;
+				cout <<"-- chargement partiel de la sauvegarde selon";
+				cout << " le type --"<<endl;
 				cout << "O) Charger uniquement les trajets composés" <<endl;
 				cout << "1) Charger uniquement les trajets simples " <<endl;
 				ReadChoice(continuer,0,1);
@@ -294,22 +295,68 @@ void application()
 			// CHARGEMENT PARTIEL DE LA SAUVEGARDE SELON DEPART / ARRIVEE
 			case 9:
 			{
-				string depart;
-				cout<<"Saissisez une ville de départ (ou tapez sur entrer)";
-				cin>>depart;
-				string arrivee;
-				cout<<"Saissisez une ville d'arrivée (ou tapez sur entrer)";
-				cin>>arrivee;
+	
+				unsigned int choix;
+				cout << "O) Selon le départ uniquement" <<endl;
+				cout << "1) Selon l'arrivée uniquement" <<endl;
+				cout << "2) Selon le départ et l'arrivée " <<endl;
+				ReadChoice(choix,0,2);
+
+				string depart ="null";
+				string arrivee="null";
+				
+				if(choix != 1)
+				{
+					cout<<"Saissisez une ville de départ : ";
+					cin >> depart;
+				}
+				
+				if(choix > 0)
+				{
+					cout<<"Saissisez une ville d'arrivée : ";
+					cin >> arrivee;
+				}
 				catalogue.GetSauvegardeDepartArrivee(depart,arrivee);
 				break;
 				
 			}
+
+			// CHARGEMENT PARTIEL DE LA SAUVEGARDE SELON UN INTERVALLE
+			case 10:
+			{
+				cout <<"-- chargement partiel de la sauvegarde selon";
+				cout << " un intervalle --"<<endl;
+				int NbTrajet=catalogue.GetNbTotalDeTrajet();
+				
+				if(NbTrajet<0)
+				{
+					break;
+				}			
+					
+				unsigned int start;
+				unsigned int end;
+				cout<<"Saissisez le début de l'intervalle : "<<endl;
+				ReadChoice(start,1,NbTrajet);
+				cout<<"Saissisez la fin de l'intervalle : "<<endl;
+				ReadChoice(end,start,NbTrajet);
+				if(end<start)
+				{
+					unsigned int temp=start;
+					start=end;
+					end=temp;
+				}
+				catalogue.GetSauvegardeDelta(start,end);
+				
+				
+			
+				break;
+			}
 	
-			// CHARGEMENT ENTIERE DE LA SAUVEGARDE
+			// CHARGEMENT ENTIER DE LA SAUVEGARDE
 			case 11:
 			{
-				cout << "-- enregistrement entière du catalogue";
-				cout << "dans la sauvegarde --"<<endl;
+				cout << "-- enregistrement entier du catalogue";
+				cout << " dans la sauvegarde --"<<endl;
 				
 			
 				if(catalogue.GetNbTrajet() == 0)
@@ -359,7 +406,7 @@ void application()
 				unsigned int choix;
 				cout << "O) Selon le départ uniquement" <<endl;
 				cout << "1) Selon l'arrivée uniquement" <<endl;
-				cout << "2) Selon le départ et l'arrivée uniquement" <<endl;
+				cout << "2) Selon le départ et l'arrivée " <<endl;
 				ReadChoice(choix,0,2);
 
 				string depart ="";
@@ -385,7 +432,7 @@ void application()
 			case 14:
 			{
 				cout<<"-- enregistrement du catalogue dans la sauvegarde";
-				cout<<" selon interval --"<<endl;
+				cout<<" selon intervalle --"<<endl;
 
 				unsigned int max = catalogue.GetNbTrajet();
 				if(max == 0)
