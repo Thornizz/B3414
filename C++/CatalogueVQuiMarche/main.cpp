@@ -12,6 +12,7 @@ using namespace std;
 #include "Catalogue.h"
 #include <cstring>
 #include <limits> 
+#include <locale>  
 
 void application();
 // Mode d'emploi : lancement de l'application
@@ -27,8 +28,14 @@ bool ReadChoice( unsigned int & N, unsigned int min, unsigned int max );
 // Mode d'emploi : permet de récupérer un int entre min et max
 // Contrat : min est inférieur à max
 
+string MajusculeString(string s);
+// Mode d'emploi : retourne le string avec des majuscules
+// Contrat : aucun
+
+
 int main (){	
 	application();
+	
 
 	return 0;
 
@@ -86,17 +93,24 @@ void application()
 			{
 				cout<<"-- Ajouter un trajet simple --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
+				string departS ="";
+				std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+				getline(cin,departS);
+				departS=MajusculeString(departS);
 				char* depart = new char[NB_MAX_CHAR1];
-				cin >> depart;
-				Majuscule(depart);
+				strcpy(depart,departS.c_str());
 				cout <<"Saisissez la ville d'arrivée : ";
+				string arriveeS ="";
+				getline(cin,arriveeS);
+				arriveeS=MajusculeString(arriveeS);
 				char* arrivee = new char[NB_MAX_CHAR1];
-				cin >> arrivee;
-				Majuscule(arrivee);
+				strcpy(arrivee,arriveeS.c_str());
 				cout <<"Saisissez le moyen de transport : ";
+				string moyenTransportS ="";
+				getline(cin,moyenTransportS);
+				moyenTransportS=MajusculeString(moyenTransportS);
 				char* moyenTransport = new char[NB_MAX_CHAR1];
-				cin >> moyenTransport;
-				Majuscule(moyenTransport);
+				strcpy(moyenTransport,moyenTransportS.c_str());
 
 				Trajet * t = new TrajetSimple(
 										depart,arrivee,moyenTransport);
@@ -116,17 +130,24 @@ void application()
 				//saisie d'au moins un départ et une étape
 				cout<<"-- Ajouter un trajet composé --"<<endl;
 				cout <<"Saisissez la ville de départ : ";
+				string departS ="";
+				std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+				getline(cin,departS);
+				departS=MajusculeString(departS);
 				char* depart = new char[NB_MAX_CHAR1];
-				cin >> depart;
-				Majuscule(depart);
-				cout <<"Saisissez une ville étape : ";
+				strcpy(depart,departS.c_str());
+				cout <<"Saisissez la ville étape : ";
+				string etapeS ="";
+				getline(cin,etapeS);
+				etapeS=MajusculeString(etapeS);
 				char* etape = new char[NB_MAX_CHAR1];
-				cin >> etape;
-				Majuscule(etape);
+				strcpy(etape,etapeS.c_str());
 				cout <<"Saisissez le moyen de transport : ";
+				string moyenTransportS ="";
+				getline(cin,moyenTransportS);
+				moyenTransportS=MajusculeString(moyenTransportS);
 				char* moyenTransport = new char[NB_MAX_CHAR1];
-				cin >> moyenTransport;
-				Majuscule(moyenTransport);
+				strcpy(moyenTransport,moyenTransportS.c_str());
 
 				Trajet * td = new TrajetSimple(
 											depart,etape,moyenTransport);
@@ -149,13 +170,18 @@ void application()
 				{
 					//saisie de l'étape
 					cout <<"Saisissez une ville étape : ";
-					etape = new char[NB_MAX_CHAR1];
-					cin >> etape;
-					Majuscule(etape);
+					string etapeS ="";
+					std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+					getline(cin,etapeS);
+					etapeS=MajusculeString(etapeS);
+					char* etape = new char[NB_MAX_CHAR1];
+					strcpy(etape,etapeS.c_str());
 					cout <<"Saisissez le moyen de transport : ";
-					moyenTransport = new char[NB_MAX_CHAR1];
-					cin >> moyenTransport;
-					Majuscule(moyenTransport);
+					string moyenTransportS ="";
+					getline(cin,moyenTransportS);
+					moyenTransportS=MajusculeString(moyenTransportS);
+					char* moyenTransport = new char[NB_MAX_CHAR1];
+					strcpy(moyenTransport,moyenTransportS.c_str());
 
 					Trajet * t = new TrajetSimple(
 										etapeCopie,etape,moyenTransport);
@@ -182,17 +208,24 @@ void application()
 				}
 
 				//saisie de l'arrivée
+				cout<<"-- Ajouter un trajet composé --"<<endl;
+				
 				cout <<"Saisissez la ville d'arrivée : ";
+				string arriveeS ="";
+				std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+				getline(cin,arriveeS);
+				arriveeS=MajusculeString(arriveeS);
 				char* arrivee = new char[NB_MAX_CHAR1];
-				cin >> arrivee;
-				Majuscule(arrivee);
+				strcpy(arrivee,arriveeS.c_str());
 				cout <<"Saisissez le moyen de transport : ";
-				moyenTransport = new char[NB_MAX_CHAR1];
-				cin >> moyenTransport;
-				Majuscule(moyenTransport);
+				string moyenTransportS2 ="";
+				getline(cin,moyenTransportS2);
+				moyenTransportS2=MajusculeString(moyenTransportS2);
+				char* moyenTransport2 = new char[NB_MAX_CHAR1];
+				strcpy(moyenTransport2,moyenTransportS2.c_str());
 
 				Trajet * ta = new TrajetSimple(
-									etapeCopie,arrivee,moyenTransport);
+									etapeCopie,arrivee,moyenTransport2);
 				//ajout de l'arrivée (création du trajet composé si
 				//nécessaire)
 				if(creation)
@@ -305,17 +338,22 @@ void application()
 
 				string depart ="null";
 				string arrivee="null";
-				
+
 				if(choix != 1)
 				{
 					cout<<"Saissisez une ville de départ : ";
-					cin >> depart;
+					std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+					getline(cin,depart);
+					depart=MajusculeString(depart);
+    				
 				}
-				
+
 				if(choix > 0)
 				{
 					cout<<"Saissisez une ville d'arrivée : ";
-					cin >> arrivee;
+					std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+					getline(cin,arrivee);
+    				arrivee=MajusculeString(arrivee);
 				}
 				catalogue.GetSauvegardeDepartArrivee(depart,arrivee);
 				break;
@@ -341,9 +379,7 @@ void application()
 				cout<<"Saissisez la fin de l'intervalle : "<<endl;
 				ReadChoice(end,start,NbTrajet);
 				catalogue.GetSauvegardeDelta(start,end);
-				
-				
-			
+							
 				break;
 			}
 	
@@ -410,13 +446,18 @@ void application()
 				if(choix != 1)
 				{
 					cout<<"Saissisez une ville de départ : ";
-					cin >> depart;
+					std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+					getline(cin,depart);
+					depart=MajusculeString(depart);
+					
 				}
 				
 				if(choix > 0)
 				{
 					cout<<"Saissisez une ville d'arrivée : ";
-					cin >> arrivee;
+					std::cin.ignore( std::numeric_limits<std::streamsize>::max(), '\n' );
+					getline(cin,arrivee);
+					arrivee=MajusculeString(arrivee);
 				}
 				
 				catalogue.SaveDepartArrivee(depart,arrivee);
@@ -472,6 +513,17 @@ void Majuscule(char *chaine)
 		i++;
 	}
 } //----- Fin de Majuscule
+
+string MajusculeString(string s)
+// Algorithme : aucun
+{
+	std::locale loc;
+	string S="";
+ 	for (std::string::size_type i=0; i<s.length(); ++i)
+    	S+= std::toupper(s[i],loc);
+    return S;
+
+} //----- Fin de MajusculeString
 
 bool ReadChoice(unsigned int & N, unsigned int min, unsigned int max ) 
 // Algorithme : aucun
