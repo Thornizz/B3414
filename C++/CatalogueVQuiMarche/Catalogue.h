@@ -61,13 +61,15 @@ public:
 	// Contrat : aucun
 	
 	int GetNbTotalDeTrajet() const;
-	// Mode d'emploi : renvoie le nombre total de trajets sauvegardés
+	// Mode d'emploi : renvoie le nombre total de trajets sauvegardés dans
+	//     le fichier de sauvegarde
 	// Contrat : le fichier de sauvegarde est renseigné
 
 	void GetSauvegardeDelta(int min, int max) const;
-	// Mode d'emploi : ajoute les trajets sauvegardés entre les indices min et max
-	// Contrat : min<max<= nombre total de trajet dans la sauvegarde et le fichier de sauvegarde est renseigné
-
+	// Mode d'emploi : ajoute les trajets sauvegardés entre les indices
+	//     min et max
+	// Contrat : min < max <= nombre total de trajet dans la sauvegarde et
+	//     le fichier de sauvegarde est renseigné
 
 	void SetFichierSauvegarde(string fichier);
 	// Mode d'emploi : modifie le fichier de sauvegarde
