@@ -677,6 +677,7 @@ void Catalogue::GetSauvegardeDelta(int min, int max) const
 						cout<<endl;
 					}
 				}
+				else delete t;
 
 			}
 
@@ -759,6 +760,7 @@ void Catalogue::GetSauvegardeDelta(int min, int max) const
 						cout<<endl;
 					}
 				}
+				else delete tc;
 			}
 
 
