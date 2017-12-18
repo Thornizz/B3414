@@ -198,7 +198,10 @@ void Catalogue::GetSauvegarde() const
 										depart,arrivee,moyenTransport);
 				if(!Add(t))
 				{
-					cout<<"Ce trajet est déjà présent dans le catalogue.";
+					cout<<"Ce trajet est déjà présent dans le catalogue : ";
+					t->Affiche();
+					cout<<endl;
+					cout<<endl;
 					delete t;
 					cout<<endl;
 				}
@@ -276,7 +279,10 @@ void Catalogue::GetSauvegarde() const
 				}
 				if(!Add(tc))
 				{
-					cout<<"Ce trajet est déjà présent dans le catalogue.";
+					cout<<"Ce trajet est déjà présent dans le catalogue : ";
+					tc->Affiche();
+					cout<<endl;
+					cout<<endl;
 					delete tc;
 					cout<<endl;
 				}
@@ -324,7 +330,10 @@ void Catalogue::GetSauvegardeTypeTrajet(bool simple) const
 											depart,arrivee,moyenTransport);
 					if(!Add(t))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						cout<<"Ce trajet est déjà présent dans le catalogue : ";
+						t->Affiche();
+						cout<<endl;
+						cout<<endl;
 						delete t;
 						cout<<endl;
 					}
@@ -411,7 +420,10 @@ void Catalogue::GetSauvegardeTypeTrajet(bool simple) const
 					}
 					if(!Add(tc))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						cout<<"Ce trajet est déjà présent dans le catalogue : ";
+						tc->Affiche();
+						cout<<endl;
+						cout<<endl;
 						delete tc;
 						cout<<endl;
 					}
@@ -470,7 +482,10 @@ void Catalogue::GetSauvegardeDepartArrivee(string Sdepart, string Sarrivee) cons
 				{
 					if(!Add(t))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						cout<<"Ce trajet est déjà présent dans le catalogue : ";
+						t->Affiche();
+						cout<<endl;
+						cout<<endl;
 						delete t;
 						cout<<endl;
 					}
@@ -554,7 +569,10 @@ void Catalogue::GetSauvegardeDepartArrivee(string Sdepart, string Sarrivee) cons
 				{
 					if(!Add(tc))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						cout<<"Ce trajet est déjà présent dans le catalogue : ";
+						tc->Affiche();
+						cout<<endl;
+						cout<<endl;
 						delete tc;
 						cout<<endl;
 					}
@@ -635,6 +653,16 @@ int Catalogue::GetNbTotalDeTrajet() const
 		
 } //----- Fin de GetNbTotalDeTrajet
 
+void Catalogue::AfficheSauvegarde() const
+// Algorithme : aucun
+{	
+	Catalogue c;
+	c.SetFichierSauvegarde(this->fichierSauvegarde);
+	c.GetSauvegarde();
+	c.Affiche();
+} //----- Fin de AfficheSauvegarde
+
+
 void Catalogue::GetSauvegardeDelta(int min, int max) const
 // Algorithme : aucun
 {
@@ -672,7 +700,10 @@ void Catalogue::GetSauvegardeDelta(int min, int max) const
 				{
 					if(!Add(t))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						cout<<"Ce trajet est déjà présent dans le catalogue : ";
+						t->Affiche();
+						cout<<endl;
+						cout<<endl;
 						delete t;
 						cout<<endl;
 					}
@@ -755,7 +786,10 @@ void Catalogue::GetSauvegardeDelta(int min, int max) const
 				{
 					if(!Add(tc))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue.";
+						cout<<"Ce trajet est déjà présent dans le catalogue : ";
+						tc->Affiche();
+						cout<<endl;
+						cout<<endl;
 						delete tc;
 						cout<<endl;
 					}
