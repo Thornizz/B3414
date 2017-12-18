@@ -51,6 +51,14 @@ bool Trajet::Equals (const Trajet & t) const
 	//comparaison des moyens de transport
 	const char* moyenTransport = t.GetMoyenTransport();
 	const char* moyenTransportThis = this->GetMoyenTransport();
+
+	//types de trajet différents
+	if((moyenTransportThis == nullptr) != (moyenTransport == nullptr))
+	{
+		return false;
+	}
+
+	//deux trajetsSimple
 	if(moyenTransportThis == nullptr || moyenTransport == nullptr)
 	{
 		return false;
@@ -68,6 +76,9 @@ bool Trajet::Equals (const Trajet & t) const
 			}
 		}
 	}
+
+	//deux trajetsCompose
+	// à faire
 	
 	//comparaison des départs
 	const char* depart = t.GetDepart();

@@ -102,6 +102,10 @@ public:
 	// Mode d'emploi : renvoit le nombre de trajets présents dans le
 	//     catalogue
 	// Contrat : aucun
+	
+	void AfficheSauvegarde() const;
+	// Mode d'emploi : affiche  la sauvegarde
+	// Contrat : le fichier de sauvegarde est renseigné
 
 //-------------------------------------------- Constructeurs - destructeur
     Catalogue ( );
