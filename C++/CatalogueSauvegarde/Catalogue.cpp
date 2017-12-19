@@ -198,12 +198,7 @@ void Catalogue::GetSauvegarde() const
 										depart,arrivee,moyenTransport);
 				if(!Add(t))
 				{
-					cout<<"Ce trajet est déjà présent dans le catalogue : ";
-					t->Affiche();
-					cout<<endl;
-					cout<<endl;
 					delete t;
-					cout<<endl;
 				}
 
 			}
@@ -279,12 +274,7 @@ void Catalogue::GetSauvegarde() const
 				}
 				if(!Add(tc))
 				{
-					cout<<"Ce trajet est déjà présent dans le catalogue : ";
-					tc->Affiche();
-					cout<<endl;
-					cout<<endl;
 					delete tc;
-					cout<<endl;
 				}
 			}
 
@@ -330,12 +320,7 @@ void Catalogue::GetSauvegardeTypeTrajet(bool simple) const
 											depart,arrivee,moyenTransport);
 					if(!Add(t))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue : ";
-						t->Affiche();
-						cout<<endl;
-						cout<<endl;
 						delete t;
-						cout<<endl;
 					}
 				}
 				else
@@ -420,12 +405,7 @@ void Catalogue::GetSauvegardeTypeTrajet(bool simple) const
 					}
 					if(!Add(tc))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue : ";
-						tc->Affiche();
-						cout<<endl;
-						cout<<endl;
 						delete tc;
-						cout<<endl;
 					}
 				}
 				else
@@ -478,16 +458,12 @@ void Catalogue::GetSauvegardeDepartArrivee(string Sdepart, string Sarrivee) cons
 
 				Trajet * t = new TrajetSimple(
 										depart,arrivee,moyenTransport);
-				if( (!Sdepart.compare("null") || !Sdepart.compare(departS2)) && (!Sarrivee.compare("null") || !Sarrivee.compare(arriveeS2)) )
+				if( (!Sdepart.compare("null") || !Sdepart.compare(departS2))
+				&& (!Sarrivee.compare("null") || !Sarrivee.compare(arriveeS2)) )
 				{
 					if(!Add(t))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue : ";
-						t->Affiche();
-						cout<<endl;
-						cout<<endl;
 						delete t;
-						cout<<endl;
 					}
 				}
 				else delete t;
@@ -496,88 +472,90 @@ void Catalogue::GetSauvegardeDepartArrivee(string Sdepart, string Sarrivee) cons
 
 			else if(!ligne.compare("TCD"))
 			{
-				//trajet 1
-				getline(fichier, ligne);
+				string departTC;
+				string arriveeTC;
+				getline(fichier, departTC);
+				getline(fichier, arriveeTC);				
+				if( (!Sdepart.compare("null") || !Sdepart.compare(departTC))
+				&& (!Sarrivee.compare("null") || !Sarrivee.compare(arriveeTC)) )
+				{
+					//trajet 1
+					getline(fichier, ligne);
 
-				getline(fichier, ligne);
+					getline(fichier, ligne);
+					string departS2=ligne;
+					char* depart1 = new char[NB_MAX_CHAR];
+					strcpy(depart1,ligne.c_str());
 
-				getline(fichier, ligne);
+					getline(fichier, ligne);
+					char* arrivee1 = new char[NB_MAX_CHAR];
+					strcpy(arrivee1,ligne.c_str());
 
-				getline(fichier, ligne);
-				string departS2=ligne;
-				char* depart1 = new char[NB_MAX_CHAR];
-				strcpy(depart1,ligne.c_str());
+					getline(fichier, ligne);
+					char* moyenTransport1 = new char[NB_MAX_CHAR];
+					strcpy(moyenTransport1,ligne.c_str());
 
-				getline(fichier, ligne);
-				char* arrivee1 = new char[NB_MAX_CHAR];
-				strcpy(arrivee1,ligne.c_str());
+					Trajet * t1 = new TrajetSimple(
+											depart1,arrivee1,moyenTransport1);
 
-				getline(fichier, ligne);
-				char* moyenTransport1 = new char[NB_MAX_CHAR];
-				strcpy(moyenTransport1,ligne.c_str());
+					//trajet 2
+					getline(fichier, ligne);
 
-				Trajet * t1 = new TrajetSimple(
-										depart1,arrivee1,moyenTransport1);
+					getline(fichier, ligne);
+					char* depart2 = new char[NB_MAX_CHAR];
+					strcpy(depart2,ligne.c_str());
 
-				//trajet 2
-				getline(fichier, ligne);
+					getline(fichier, ligne);
+					char* arrivee2 = new char[NB_MAX_CHAR];
+					strcpy(arrivee2,ligne.c_str());
 
-				getline(fichier, ligne);
-				char* depart2 = new char[NB_MAX_CHAR];
-				strcpy(depart2,ligne.c_str());
+					getline(fichier, ligne);
+					char* moyenTransport2 = new char[NB_MAX_CHAR];
+					strcpy(moyenTransport2,ligne.c_str());
 
-				getline(fichier, ligne);
-				char* arrivee2 = new char[NB_MAX_CHAR];
-				strcpy(arrivee2,ligne.c_str());
+					Trajet * t2 = new TrajetSimple(
+											depart2,arrivee2,moyenTransport2);
 
-				getline(fichier, ligne);
-				char* moyenTransport2 = new char[NB_MAX_CHAR];
-				strcpy(moyenTransport2,ligne.c_str());
-
-				Trajet * t2 = new TrajetSimple(
-										depart2,arrivee2,moyenTransport2);
-
-				// création du TrajetCompose
-				TrajetCompose * tc = new TrajetCompose(t1,t2);
+					// création du TrajetCompose
+					TrajetCompose * tc = new TrajetCompose(t1,t2);
 
 
-				getline(fichier, ligne);
+					getline(fichier, ligne);
 				
-				string arriveeS2;
-				while(ligne.compare("TCF"))
-				{
-					getline(fichier, ligne);
-					char* depart = new char[NB_MAX_CHAR];
-					strcpy(depart,ligne.c_str());
+					string arriveeS2;
+					while(ligne.compare("TCF"))
+					{
+						getline(fichier, ligne);
+						char* depart = new char[NB_MAX_CHAR];
+						strcpy(depart,ligne.c_str());
 
-					getline(fichier, ligne);
-					arriveeS2=ligne;
-					char* arrivee = new char[NB_MAX_CHAR];
-					strcpy(arrivee,ligne.c_str());
+						getline(fichier, ligne);
+						arriveeS2=ligne;
+						char* arrivee = new char[NB_MAX_CHAR];
+						strcpy(arrivee,ligne.c_str());
 
-					getline(fichier, ligne);
-					char* moyenTransport = new char[NB_MAX_CHAR];
-					strcpy(moyenTransport,ligne.c_str());
+						getline(fichier, ligne);
+						char* moyenTransport = new char[NB_MAX_CHAR];
+						strcpy(moyenTransport,ligne.c_str());
 
-					Trajet * t = new TrajetSimple(
-											depart,arrivee,moyenTransport);
-					tc->Add(t);
+						Trajet * t = new TrajetSimple(
+												depart,arrivee,moyenTransport);
+						tc->Add(t);
 
-					getline(fichier, ligne);
-				}
-				if( (!Sdepart.compare("null") || !Sdepart.compare(departS2)) && (!Sarrivee.compare("null") || !Sarrivee.compare(arriveeS2)) )
-				{
+						getline(fichier, ligne);
+					}
 					if(!Add(tc))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue : ";
-						tc->Affiche();
-						cout<<endl;
-						cout<<endl;
 						delete tc;
-						cout<<endl;
 					}
 				}
-				else delete tc;
+				else
+				{
+					while(ligne.compare("TCF"))
+					{
+						getline(fichier, ligne);
+					}
+				}
 			}
 
 
@@ -592,64 +570,15 @@ void Catalogue::GetSauvegardeDepartArrivee(string Sdepart, string Sarrivee) cons
 int Catalogue::GetNbTotalDeTrajet() const
 // Algorithme : aucun
 {
-
-	int NbTrajet=0;
 	if(fichierSauvegarde.empty())
 	{
 		cerr << "Le fichier de sauvegarde n'est pas renseigné" << endl;
 		return -1;
 	}
-	ifstream fichier(fichierSauvegarde, ios::in);
-	if(fichier)
-	{
-		string ligne;
-		while(getline(fichier, ligne))
-		{
-			if(!ligne.compare("TS"))
-			{
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				++NbTrajet;
-				
-			}
-
-
-			else if(!ligne.compare("TCD"))
-			{
-				++NbTrajet;
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				getline(fichier, ligne);
-				
-				while(ligne.compare("TCF"))
-				{
-					getline(fichier, ligne);
-					getline(fichier, ligne);
-					getline(fichier, ligne);
-					getline(fichier, ligne);
-				}
-				
-			}
-
-
-		}
-		fichier.close();
-		return NbTrajet;
-	}
-	else
-	{
-		cerr << "Impossible d'ouvrir le fichier : "+fichierSauvegarde << endl;
-		return -1;
-	}
+	Catalogue c;
+	c.SetFichierSauvegarde(this->fichierSauvegarde);
+	c.GetSauvegarde();
+	return c.GetNbTrajet();
 		
 } //----- Fin de GetNbTotalDeTrajet
 
@@ -700,12 +629,7 @@ void Catalogue::GetSauvegardeDelta(int min, int max) const
 				{
 					if(!Add(t))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue : ";
-						t->Affiche();
-						cout<<endl;
-						cout<<endl;
 						delete t;
-						cout<<endl;
 					}
 				}
 				else delete t;
@@ -786,12 +710,7 @@ void Catalogue::GetSauvegardeDelta(int min, int max) const
 				{
 					if(!Add(tc))
 					{
-						cout<<"Ce trajet est déjà présent dans le catalogue : ";
-						tc->Affiche();
-						cout<<endl;
-						cout<<endl;
 						delete tc;
-						cout<<endl;
 					}
 				}
 				else delete tc;
