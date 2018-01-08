@@ -105,10 +105,10 @@ function [imageRetour]= ImageIdealeWiener(im,imRef)
     
     IM_REF = fft2(imRef);
     dr = ifft2(IM_REF.*H);
-    BRUIT = fft2(dr - round(dr));
+    fBruit = fft2(dr - round(dr));
 
-    Pbruit = BRUIT.*BRUIT;
-    Pideal = IM_REF.*IM_REF;
+    Pbruit = fBruit.*fBruit;
+    Pideal = IM_REF.*fRef;
 
     W = abs(H) .* abs(H) ./ (H .* ((abs(H) .* abs(H)) + (Pbruit ./ Pideal)));
    
