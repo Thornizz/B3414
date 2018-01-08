@@ -1,47 +1,73 @@
 function [] = partie2()
     gris = ([0:255]/255)'*[1 1 1];
-
-%     [imFloue,mapFloue]= imread('image_floue.png');
+    
+    % AFFICHAGE DES IMAGES
+%     imFloue = imread('image_floue.png');
 %     figure(1);
 %     image(imFloue);
 %     colormap(gris);
 %     
-%     [imRef,mapRef]= imread('image_ref.png');
+%     imRef = imread('image_ref.png');
 %     figure(2);
 %     image(imRef);
 %     colormap(gris);
 %     
-%     [imThorg,mapThorg]= imread('Thorg.png');
+%     imThorg = imread('Thorg.png');
 %     figure(3);
 %     image(imThorg);
 %     colormap(gris);
-%     
-%     figure(4);
-%     image(ImageFiltreGaussien(imThorg,0.0002));
+
+    % SOUS-ECHANTILLONAGE
+%     im = imread('Thorg.png');
+% 
+%     figure(1);
+%     image(im);
+%     colormap(gris);
+% 
+%     figure(2);
+%     image(ImageSousEchantillonee(im));
+%     colormap(gris);
+
+    % FILTRE GAUSSIEN
+%     im = imread('Thorg.png');
+% 
+%     figure(1);
+%     image(im);
+%     colormap(gris);
+% 
+%     figure(2);
+%     image(ImageFiltreGaussien(im,0.0002));
 %     colormap(gris);
 %     
-%     figure(5);
-%     image(ImageFiltreGaussien(imThorg,0.0004));
+%     figure(3);
+%     image(ImageFiltreGaussien(im,0.0004));
 %     colormap(gris);
-%     
-%     figure(6);
-%     image(ImageFrequence(imFloue));
+
+    % FREQUENCE
+%     im = imread('Thorg.png');
+% 
+%     figure(1);
+%     image(im);
 %     colormap(gris);
-%     
-%     figure(7);
-%     image(ImageFrequence(imRef));
-%     colormap(gris);
-%     
-%     figure(8);
-%     image(ImageFrequence(imThorg));
+% 
+%     figure(2);
+%     image(ImageFrequence(im));
 %     colormap(gris);
     
-%RETAURATION
-    imFloue= imread('image_floue.png');
-    imRef= imread('image_ref.png');
-    figure(1)
-    image(ImageIdealeWiener(imFloue,imRef));
-    colormap(gris);
+    % RETAURATION SIMPLISTE
+%     imFloue= imread('image_floue.png');
+%     
+%     figure(1)
+%     image(ImageIdealeSimpliste(imFloue));
+%     colormap(gris);
+    
+    % RETAURATION WIENER
+%     imFloue= imread('image_floue.png');
+%     imRef= imread('image_ref.png');
+%     
+%     figure(1)
+%     image(ImageIdealeWiener(imFloue,imRef));
+%     colormap(gris);
 end
 
 function [imRetour] = ImageFiltreGaussien(im,K)
@@ -107,10 +133,10 @@ function [imageRetour]= ImageIdealeWiener(im,imRef)
     dr = ifft2(IM_REF.*H);
     BRUIT = fft2(dr - round(dr));
 
-    Pbruit = BRUIT.*BRUIT;
-    Pideal = IM_REF.*IM_REF;
+    P_BRUIT = BRUIT.*BRUIT;
+    P_IDEAL = IM_REF.*IM_REF;
 
-    W = abs(H) .* abs(H) ./ (H .* ((abs(H) .* abs(H)) + (Pbruit ./ Pideal)));
+    W = abs(H) .* abs(H) ./ (H .* ((abs(H) .* abs(H)) + (P_BRUIT ./ P_IDEAL)));
    
     IM = fft2(im);
     IM_RETOUR = IM.*W;
