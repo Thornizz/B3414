@@ -2,6 +2,8 @@ function [] = partie2()
     gris = ([0:255]/255)'*[1 1 1];
     
     % AFFICHAGE DES IMAGES
+    % perte d'information car un prend un pixel sur 16
+    % pour améliorer l'image on peut faire la moyennes des pixel pour recréer les 15 pixels enelvés
 %     imFloue = imread('image_floue.png');
 %     figure(1);
 %     image(imFloue);
@@ -17,18 +19,8 @@ function [] = partie2()
 %     image(imThorg);
 %     colormap(gris);
 
-    % SOUS-ECHANTILLONAGE
-%     im = imread('Thorg.png');
-% 
-%     figure(1);
-%     image(im);
-%     colormap(gris);
-% 
-%     figure(2);
-%     image(ImageSousEchantillonee(im));
-%     colormap(gris);
-
     % FILTRE GAUSSIEN
+    % plus le coefficient est élevé, plus l'image est floue
 %     im = imread('Thorg.png');
 % 
 %     figure(1);
@@ -41,6 +33,17 @@ function [] = partie2()
 %     
 %     figure(3);
 %     image(ImageFiltreGaussien(im,0.0004));
+%     colormap(gris);
+
+    % SOUS-ECHANTILLONAGE
+%     im = imread('Thorg.png');
+% 
+%     figure(1);
+%     image(im);
+%     colormap(gris);
+% 
+%     figure(2);
+%     image(ImageSousEchantillonee(im));
 %     colormap(gris);
 
     % FREQUENCE
