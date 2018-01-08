@@ -1,4 +1,4 @@
-function [] = test()
+function [] = partie1()
     load('fonction5.mat');
     load('signal1.mat');
     load('signal2.mat');
