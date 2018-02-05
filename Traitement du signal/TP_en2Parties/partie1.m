@@ -143,13 +143,13 @@ function [] = partie1()
 %       subplot(5,2,9)
 %       plot(temps,SDemoduleFiltre)
 %       title('S = invFourier(spectre SDemoduleFiltre en frequence)');
-      
+%       
     % ALIASING
-      S = real(s1);
-      
-      for i=0:4
-        G(N,i*1000,S,temps,frequence,i);
-      end
+%       S = real(s1);
+%       
+%       for i=0:4
+%         G(N,i*1000,S,temps,frequence,i);
+%       end
 end
 
 function [] = G(N,f,S,temps,frequence,position)
